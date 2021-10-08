@@ -9,6 +9,7 @@
 ``` sh
 cd themes
 git clone git@github.com:bill-xia/hexo-theme-mashiro.git
+mv hexo-theme-mashiro mashiro # 或者直接重命名文件夹为mashiro
 npm uninstall hexo-renderer-markdown-it
 npm install hexo-renderer-markdown-them
 npm install font-spider -g
