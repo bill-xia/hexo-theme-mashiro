@@ -2,7 +2,9 @@
 
 这是一个模仿CTeX默认样式的、简洁、学术风格的主题。
 
-## Install
+## Usage
+
+### Install
 
 ``` sh
 cd themes
@@ -16,7 +18,7 @@ npm install font-spider -g
 
 为了压缩中文字体，需要修改`_config.yml`的`relative_link`为`true`，因为`font-spider`是根据相对地址来查找字体文件的。
 
-### 部署
+### Deploy
 
 ``` sh
 hexo clean
