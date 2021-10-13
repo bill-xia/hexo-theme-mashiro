@@ -4,15 +4,17 @@
 
 ## Usage
 
+提及修改配置文件`_config.yml`时，总是指您的
+
 ### Install
 
 ``` sh
 cd themes
 git clone git@github.com:bill-xia/hexo-theme-mashiro.git
 mv hexo-theme-mashiro mashiro # 或者直接重命名文件夹为mashiro
-npm uninstall hexo-renderer-markdown-it
+npm uninstall hexo-renderer-marked # 卸载您当前的markdown引擎
 npm install hexo-renderer-markdown-them
-npm install font-spider -g
+npm install font-spider -g # 全局安装font-spider，用于字体压缩
 ```
 
 修改`_config.yml`使用`Mashiro`主题即可。
@@ -32,15 +34,15 @@ hexo deploy
 
 ## 特性
 
-注意：这个主题每次更新后都要求此后访问的用户等待共计800K左右的字体加载，对于一个低带宽的低配服务器而言，这需要一段时间（约5s），这段时间内用户看到的内容各不相同，可能空白，可能是默认无衬线字体字体，也可能是默认衬线字体。如果您不能接受这一点，可能这个主题不适合您。
+注意：这个主题每次更新后都要求此后访问的用户等待共计800K左右的字体加载，对于一个低带宽的低配服务器而言，这需要一段时间（约1s-5s），这段时间内用户看到的内容各不相同，可能空白，可能是默认无衬线字体字体，也可能是默认衬线字体。如果您不能接受这一点，可能这个主题不适合您。
 
-主题支持中文字体压缩，$\LaTeX$数学公式渲染，以及hexo默认主题支持的其他功能（除了sidebar之外，目前我没能把它和我的主题融合起来）。暂时不支持文章目录功能。
+主题支持中文字体压缩，LaTeX数学公式渲染，以及hexo默认主题支持的其他功能（除了sidebar之外，目前我没能把它和我的主题融合起来）。暂时不支持文章目录功能。
 
 代码高亮：采用Hexo的默认高亮引擎，带有行号，通过主题内的css和浏览器端js实现滚动时行号锁定。
 
-这个主题采用了CTeX默认使用的字体，英文为Latin Modern系列，中文正文为汉仪书宋，粗体为方正黑体。（斜体应为楷体，代码区应为仿宋体，我还没有做。CTeX制作的Fandols系列字体可以显示但无法压缩，不压缩的文件太大了，非常影响用户体验）
+这个主题采用了CTeX默认使用的字体，英文为Latin Modern系列，中文正文为汉仪书宋，粗体为方正黑体。（斜体应为楷体，代码区应为仿宋体，我还没有做。）CTeX制作的Fandols系列字体可以显示但无法压缩，我目前无法解决，所以没有用这个系列。
 
-Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的`markdown-them`引擎渲染，支持渲染数学公式、Todo-list等。默认情况下“渲染数学公式”只是保证里面的内容不被markdown引擎渲染，把他们包围在`$ $`或`\( \)`之间输出到html。进一步的渲染交给浏览器端脚本完成，您可以选择使用`KaTeX`或`MathJax`。本主题默认使用`MathJax`，因为`KaTeX`默认渲染出来又大又粗，和我们的衬线字体不搭配，`MathJax`则正好。
+Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的[`markdown-them`引擎](https://github.com/bill-xia/markdown-them)渲染，支持渲染数学公式、Todo-list等。默认情况下“渲染数学公式”只是保证里面的内容不被markdown引擎渲染，把他们包围在`$ $`或`\( \)`之间输出到html。进一步的渲染交给浏览器端脚本完成，您可以选择使用`KaTeX`或`MathJax`。本主题默认使用`KaTeX`。主题的样式文件对行间公式设置了溢出时滚动，将字体大小修改为`1em`（`KaTeX`默认为`1.21em`，与主题风格不符合）。`MathJax3`的长公式自动换行机制[还没有实现](http://docs.mathjax.org/en/latest/output/linebreaks.html)，所以暂时采用`KaTeX`渲染，没有发现太大问题。想使用`MathJax`也是完全可行的，只要在`layout/_partial/after-footer.ejs`中注释掉`KaTeX`相关脚本，取消注释`MathJax`相关脚本即可使用`MathJax3`。使用`MathJax2`需要您在此处自己引入脚本，不过难度不大。我的样式文件同样为`MathJax`设置了溢出时滚动。
 
 ## 关于日文/繁中支持
 
