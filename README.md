@@ -42,7 +42,9 @@ hexo deploy
 
 这个主题采用了CTeX默认使用的字体，英文为Latin Modern系列，中文正文为汉仪书宋，粗体为方正黑体。（斜体应为楷体，代码区应为仿宋体，我还没有做。）CTeX制作的Fandols系列字体可以显示但无法压缩，我目前无法解决，所以没有用这个系列。
 
-Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的[`markdown-them`引擎](https://github.com/bill-xia/markdown-them)渲染，支持渲染数学公式、Todo-list等。默认情况下“渲染数学公式”只是保证里面的内容不被markdown引擎渲染，把他们包围在`$ $`或`\( \)`之间输出到html。进一步的渲染交给浏览器端脚本完成，您可以选择使用`KaTeX`或`MathJax`。本主题默认使用`KaTeX`。主题的样式文件对行间公式设置了溢出时滚动，将字体大小修改为`1em`（`KaTeX`默认为`1.21em`，与主题风格不符合）。`MathJax3`的长公式自动换行机制[还没有实现](http://docs.mathjax.org/en/latest/output/linebreaks.html)，所以暂时采用`KaTeX`渲染，没有发现太大问题。想使用`MathJax`也是完全可行的，只要在`layout/_partial/after-footer.ejs`中注释掉`KaTeX`相关脚本，取消注释`MathJax`相关脚本即可使用`MathJax3`。使用`MathJax2`需要您在此处自己引入脚本，不过难度不大。我的样式文件同样为`MathJax`设置了溢出时滚动。
+Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的[`markdown-them`引擎](https://github.com/bill-xia/markdown-them)渲染，支持渲染数学公式、Todo-list等。默认情况下“渲染数学公式”只是保证里面的内容不被markdown引擎渲染，把他们包围在`$ $`或`\( \)`之间输出到html。进一步的渲染交给浏览器端脚本完成，您可以选择使用`KaTeX`或`MathJax`。本主题默认使用`MathJax`。主题的样式文件对行间公式设置了溢出时滚动。
+
+数学公式渲染的一点问题：`MathJax3`的长公式自动换行机制[还没有实现](http://docs.mathjax.org/en/latest/output/linebreaks.html)，这会导致行内公式过长时的溢出被截断（尤其是移动端会有这种问题）。当这种情况发生时，我的建议是把它写成行间公式以使其溢出时滚动。如果您实在有这方面的需求，可以尝试使用`KaTeX`渲染，它带有自动换行功能。但是由于简单地引入`KaTeX`要引入`css`，会导致`font-spider`不工作，一个可行的方案是[将`KaTeX`源文件部署在您的服务器上](https://katex.org/docs/browser.html#download--host-things-yourself)。另外，本主题已将`KaTeX`的默认字体大小修改为`1em`（默认为`1.21em`，与主题风格不符合），即使您没有使用`KaTeX`。
 
 ## 关于日文/繁中支持
 
