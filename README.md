@@ -1,6 +1,6 @@
 # hexo-theme-mashiro
 
-这是一个模仿CTeX默认样式的、简洁、学术风格的主题。
+这是一个模仿CTeX默认样式的、简洁、学术风格的主题。[预览：我的博客](https://wilsonxia.cn)
 
 ## Usage
 
@@ -46,6 +46,8 @@ Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的[`markdown-
 
 数学公式渲染的一点问题：`MathJax3`的长公式自动换行机制[还没有实现](http://docs.mathjax.org/en/latest/output/linebreaks.html)，这会导致行内公式过长时的溢出被截断（尤其是移动端会有这种问题）。当这种情况发生时，我的建议是把它写成行间公式以使其溢出时滚动。如果您实在有这方面的需求，可以尝试使用`KaTeX`渲染，它带有自动换行功能。但是由于简单地引入`KaTeX`要引入`css`，会导致`font-spider`不工作，一个可行的方案是[将`KaTeX`源文件部署在您的服务器上](https://katex.org/docs/browser.html#download--host-things-yourself)。另外，本主题已将`KaTeX`的默认字体大小修改为`1em`（默认为`1.21em`，与主题风格不符合），即使您没有使用`KaTeX`。
 
+这个主题的底部有我的网站的备案号，写在`layout/_partial/footer.ejs`里。您不需要备案号就删除，需要的话更改为您的备案号即可。
+
 ## 关于日文/繁中支持
 
 如果您的博客全部使用日语，可以修改`themes/mashiro/source/css/_variables.styl`，将`Chinese`换成一款日文衬线字体，如`YuMincho`或`MS Mincho`。
@@ -53,3 +55,13 @@ Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的[`markdown-
 如果是中日混排就很麻烦。如果日文量不大，先用默认字体看看有没有问题，汉仪书宋里有平假名、片假名和一些汉字。如果有些字不在默认字体里，可能可以用思源宋体这类中日韩一起设计的字体作为正文字体，但我没试过，您有这种需求的话可以试试。`YuMincho`和`MS Mincho`基线都和汉仪书宋不一样高，区别很明显，不太可用。
 
 繁中同理，可以先找找汉仪书宋系列有没有做繁体字，如果没有，可以挑一个您喜欢的繁体中文字体，放到`themes/mashiro/source/fonts`目录下，再在`themes/mashiro/source/css/style.styl`中将`@font-face { font-family: Chinese; }`的字体都更换成您的字体即可。如果简繁混排，可以在`style.styl`中添加新的`@font-face { font-family: Traditional-Chinese; }`并指向您的字体，并在`_variables.styl`的`font-sans`和`font-serif`变量中加入新字体，顺序视您的需要而定，哪种字体用得多就放在前面。
+
+## Todo List
+
+- [ ] 楷体和仿宋体字体文件加入
+- [ ] 寻找兼容汉仪书宋的繁体中文、日文与韩文正文字体
+- [ ] 如果上条做不到，寻找CJK语系全兼容的同时不太破坏CTeX风格的字体
+- [ ] 代码块一键复制
+- [ ] font-spider脚本简化
+- [ ] 主题内置KaTeX源文件
+- [ ] 主题内配置数学渲染引擎
