@@ -4,7 +4,7 @@
 
 ## Usage
 
-提及修改配置文件`_config.yml`时，总是指您的博客根目录下的配置文件，而非主题文件夹下的。
+提及修改配置文件`_config.yml`时，如未指明是`mashiro/_config.yml`，总是指您的博客根目录下的配置文件，而非主题文件夹下的。
 
 ### Install
 
@@ -31,6 +31,14 @@ hexo deploy
 ```
 
 注意`font-spider`那一行，您的public文件夹中最深的html文件嵌套了几层，就应当在后面写几层的通配符（俺只会笨办法...）。
+
+### favicon
+
+将您的网站的favicon文件放在`mashiro/source/`目录下，并更改`mashiro/_config.yml`第49行的路径。`mashiro/source/`文件夹中的内容会被拷贝到`public/`的目录下，所以您应当填入：以`source`文件夹为根目录时，图标文件的绝对地址。
+
+### RSS订阅
+
+安装插件`hexo-generator-feed`，然后根据这个插件的官方文档修改`_config.yml`。最后修改`mashiro/_config.yml`第54行为您的rss路径。
 
 ## 特性
 
