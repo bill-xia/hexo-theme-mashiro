@@ -46,10 +46,12 @@ recent_posts_limits: 5
 # Miscellaneous
 google_analytics:
 gauges_analytics:
-favicon: /favicon.png
+favicon: /favicon.ico
 twitter:
 fb_admins:
 fb_app_id:
+
+rss: /atom.xml
 
 # valine comment system. https://valine.js.org
 valine:
