@@ -25,7 +25,6 @@ copyright:
 
 # Sidebar
 widgets:
-- toc
 - category
 - tag
 - tagcloud
@@ -34,9 +33,15 @@ widgets:
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:
-# - category
-# - tagcloud
-# - archive
+- category
+- tagcloud
+- archive
+
+# toc open 
+toc:
+  enable: true
+  default: true
+sidebar: aside
 
 # Widget behavior
 archive_type: 'monthly'
