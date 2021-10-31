@@ -3,6 +3,6 @@
     ) { %>
 <div id="article-toc">
     <h2 class="widget-title"><%= __('toc') %></h2>
-    <%- toc(page.content) %>
+    <%- toc(page.content, { max_depth: 6, min_depth: 1}) %>
 </div>
 <% } %>

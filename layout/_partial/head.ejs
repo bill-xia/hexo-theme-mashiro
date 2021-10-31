@@ -37,5 +37,8 @@
   <% if (theme.favicon){ %>
     <%- favicon_tag(theme.favicon) %>
   <% } %>
+  <% if (theme.fancybox){ %>
+    <%- css('fancybox/jquery.fancybox-1.3.4.css') %>
+  <% } %>
   <%- css('css/style') %>
 </head>

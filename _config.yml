@@ -6,7 +6,7 @@ menu:
 
 # Content
 excerpt_link: Read More
-fancybox: false
+fancybox: true
 
 # # Footer
 # copyright: |-
@@ -25,11 +25,9 @@ copyright:
 
 # Sidebar
 widgets:
-- category
-- tag
-- tagcloud
-- archive
 - recent_posts
+- category
+- tagcloud
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:
@@ -39,9 +37,8 @@ index_widgets:
 
 # toc open 
 toc:
-  enable: true
-  default: true
-sidebar: aside
+  enable: false
+  # default: true
 
 # Widget behavior
 archive_type: 'monthly'
