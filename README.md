@@ -1,6 +1,6 @@
 # hexo-theme-mashiro
 
-这是一个模仿CTeX默认样式的、简洁、学术风格的主题。[预览：我的博客](http://49.232.83.215)
+这是一个模仿CTeX默认样式的、简洁、学术风格的主题。[预览：我的博客](https://wilsonxia.cn)
 
 ## Usage
 
