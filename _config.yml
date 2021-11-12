@@ -8,22 +8,8 @@ menu:
 excerpt_link: Read More
 fancybox: true
 
-# # Footer
-# copyright: |-
-#   <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a></br>
-#   All website licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></br>
-
-# Footer
-copyright:
-# Need help choosing? Please see...
-# https://creativecommons.org/choose/
-# https://choosealicense.com/
-# You can use html like below...
-# copyright: |-
-#   <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a></br>
-#   All website licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></br>
-
 # Sidebar
+sidebar: side
 widgets:
 - recent_posts
 - category
@@ -38,21 +24,15 @@ index_widgets:
 # toc open 
 toc:
   enable: false
-  # default: true
+  default: true
 
 # Widget behavior
 archive_type: 'monthly'
 show_count: false
 recent_posts_limits: 5
 
-# Miscellaneous
-google_analytics:
-gauges_analytics:
-favicon: /favicon.ico
-twitter:
-fb_admins:
-fb_app_id:
 
+favicon: /favicon.ico
 rss: /atom.xml
 
 # valine comment system. https://valine.js.org
@@ -67,3 +47,7 @@ valine:
   lang: zh-cn # i18n: zh-cn/en
   placeholder: Just go go # valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header info
+
+math:
+  enable: true
+  engine: katex
