@@ -2,11 +2,9 @@
 
 这是一个模仿CTeX默认样式的、简洁、学术风格的主题。[预览：我的博客](https://wilsonxia.cn)
 
-## Usage
+## 使用
 
-提及修改配置文件`_config.yml`时，如未指明是`mashiro/_config.yml`，总是指您的博客根目录下的配置文件，而非主题文件夹下的。
-
-### Install
+### 安装
 
 ``` sh
 cd themes
@@ -17,7 +15,20 @@ npm install hexo-renderer-markdown-them
 npm install font-spider -g # 全局安装font-spider，用于字体压缩
 ```
 
-修改`_config.yml`使用`mashiro`主题即可。
+现在您的主题文件夹`themes`中已经有了一个名为`mashiro`的文件夹。Hexo有两个配置文件：站点配置文件，即站点根目录下的`_config.yml`，以及主题配置文件，即各个主题根目录下的`_config.yml`。为了方便您更新主题，强烈建议您总是将主题配置文件放在主题文件夹外（最好在根目录下）。配置方法为：
+
+1. 在站点根目录中的`_config.yml`文件中添加一行：`theme_config: _config.mashiro.yml`
+2. 在站点根目录中新建文件`_config.mashiro.yml`，并将`themes/mashiro/_config.yml`中的内容粘贴进去。
+
+理想情况是，在完成上述操作后，您不再需要接触`themes/mashiro`目录中的任何文件。这样，在您更新主题时，您原来的主题配置不会丢失。
+
+### 更新
+
+更新主题时，直接删除（或备份）`themes/mashiro`文件夹，再重复安装步骤即可。如果您安装时按照文档将主题配置文件移到了站点根目录下，那么您的配置不会丢失。更新时本项目将尽量兼容旧的配置文件，如果旧的配置文件失效了，还要麻烦您重新配置一次。
+
+### 配置
+
+修改`_config.yml`中`theme`项为`mashiro`即可开始使用本主题！
 
 为了压缩中文字体，需要修改`_config.yml`的`relative_link`为`true`，因为`font-spider`是根据相对地址来查找字体文件的。
 
@@ -50,7 +61,7 @@ Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的[`markdown-
 
 数学公式渲染的一点问题：`MathJax3`的长公式自动换行机制[还没有实现](http://docs.mathjax.org/en/latest/output/linebreaks.html)，这会导致行内公式过长时的溢出被截断（尤其是移动端会有这种问题）。当这种情况发生时，我的建议是把它写成行间公式以使其溢出时滚动。如果您实在有这方面的需求，可以尝试使用`KaTeX`渲染，它带有自动换行功能。但是由于简单地引入`KaTeX`要引入`css`，会导致`font-spider`不工作，一个可行的方案是[将`KaTeX`源文件部署在您的服务器上](https://katex.org/docs/browser.html#download--host-things-yourself)。另外，本主题已将`KaTeX`的默认字体大小修改为`1em`（默认为`1.21em`，与主题风格不符合），即使您没有使用`KaTeX`。
 
-这个主题的底部有我的网站的备案号，写在`layout/_partial/footer.ejs`里。您不需要备案号就删除，需要的话更改为您的备案号即可。
+这个主题的底部有我的网站的备案号，写在`themes/mashiro/layout/_partial/footer.ejs`里。您不需要备案号就删除，需要的话更改为您的备案号即可。
 
 ### 摘要
 
@@ -60,7 +71,7 @@ Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的[`markdown-
 
 ### 正文标点
 
-我将正文中的标点都改成了英文标点与空格，以使其更加美观。如果您想对这一特性进行修改，请修改`mashiro/scripts/transpunc.js`。如果您想关闭这一特性，请注释掉整个文件。以后将会添加配置功能，以防止您的配置在升级时被覆盖。
+我将正文中的标点都改成了英文标点与空格，以使其更加美观。如果您想对这一特性进行修改，请修改`themes/mashiro/scripts/transpunc.js`。如果您想关闭这一特性，请注释掉整个文件。以后将会添加配置功能，以防止您的配置在升级时被覆盖。
 
 ### 404页面
 
@@ -88,11 +99,11 @@ layout: "404"
 
 ### favicon
 
-将您的网站的favicon文件放在`mashiro/source/`目录下，并更改`mashiro/_config.yml`第49行的路径。`mashiro/source/`文件夹中的内容会被拷贝到`public/`的目录下，所以您应当填入：以`source`文件夹为根目录时，图标文件的绝对地址。
+将您的网站的favicon文件放在`themes/mashiro/source/`目录下，并更改`_config.mashiro.yml`中`favicon`项的路径。`themes/mashiro/source/`文件夹中的内容会被拷贝到`public/`的目录下，所以您应当填入：以`source`文件夹为根目录时，图标文件的绝对地址。
 
 ### RSS订阅
 
-安装插件`hexo-generator-feed`，然后根据这个插件的官方文档修改`_config.yml`。最后修改`mashiro/_config.yml`第54行为您的rss路径。如果您不想开启这个功能，请注释掉`mashiro/_config.yml`第54行。
+安装插件`hexo-generator-feed`，然后根据这个插件的官方文档修改`_config.yml`。最后修改`_config.mashiro.yml`第54行为您的rss路径。如果您不想开启这个功能，请注释掉`_config.mashiro.yml`第54行。
 
 ### 文章中插入视频
 
@@ -104,7 +115,7 @@ layout: "404"
 </div>
 ```
 
-我为这个类写了一点样式以使其更加美观。其他问题请参考讲`bilibili`外链播放器`url`参数的文章。
+本主题为这个类写了一点样式以使其更加美观。其他问题请参考讲`bilibili`外链播放器`url`参数的文章。
 
 ## 关于日文/繁中支持
 
