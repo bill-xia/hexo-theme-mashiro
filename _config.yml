@@ -23,8 +23,8 @@ index_widgets:
 
 # toc open 
 toc:
-  enable: false
-  default: true
+  enable: true
+  default: false
 
 # Widget behavior
 archive_type: 'monthly'
