@@ -16,7 +16,9 @@ function trans_punc(content) {
     return content;
 }
 
-hexo.extend.filter.register('before_post_render', function(data){
-    data.title = trans_punc(data.title);
-    data.content = trans_punc(data.content);
-});
+if (hexo.config.transpunc == true) {
+    hexo.extend.filter.register('before_post_render', function(data){
+        data.title = trans_punc(data.title);
+        data.content = trans_punc(data.content);
+    });
+}
