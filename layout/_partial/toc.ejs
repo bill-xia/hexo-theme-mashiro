@@ -1,5 +1,5 @@
 <% if (is_post() && theme.toc.enable && (
-    (theme.toc.default === true && post.toc === undefined) || post.toc === true)
+    (theme.toc.default == true && post.toc == undefined) || post.toc == true)
     ) { %>
 <div id="article-toc">
     <h2 class="widget-title"><%= __('toc') %></h2>
