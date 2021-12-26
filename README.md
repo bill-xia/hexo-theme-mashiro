@@ -59,6 +59,30 @@ hexo deploy
 
 Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的[`markdown-them`引擎](https://github.com/bill-xia/markdown-them)渲染，支持渲染数学公式、Todo-list等。
 
+### 文章目录
+
+可在`themes/mashiro/_config.yml`中配置，有两个参数`enable`和`default`：
+
+``` yml
+toc:
+    enable: true
+    default: false
+```
+
+若`enable`为`false`则永远不会显示主题。`enable`为`true`时，若`default: false`，则只为`front-matter`中指明要生成目录(添加一行`toc: true`)时生成，否则对每篇文章生成一个目录。
+
+### 边栏
+
+``` yml
+sidebar: bottom
+widgets:
+- recent_posts
+- category
+- tagcloud
+```
+
+详见[landscape主题配置](https://github.com/hexojs/hexo-theme-landscape#sidebar)。
+
 ### 数学公式
 
 默认情况下“渲染数学公式”只是保证里面的内容不被markdown引擎渲染，把他们包围在`$ $`或`\( \)`之间输出到html。进一步的渲染交给浏览器端脚本完成，您可以选择使用`KaTeX`或`MathJax`，只需将配置文件中的`math, engine`项设为您需要的引擎。本主题默认使用`MathJax`。主题的样式文件对行间公式设置了溢出时滚动。
@@ -150,8 +174,8 @@ layout: "404"
 - [ ] 如果上条做不到，寻找CJK语系全兼容的同时不太破坏CTeX风格的字体
 - [ ] 代码块一键复制
 - [ ] font-spider脚本简化
-- [ ] 主题内置KaTeX源文件
-- [ ] 主题内配置数学渲染引擎
+- [x] 主题内置KaTeX源文件
+- [x] 主题内配置数学渲染引擎
 - [ ] 404页面快速生成
-- [ ] 需要修改源代码的内容都写入配置
+- [x] 需要修改源代码的内容都写入配置
 - [x] 边栏标题左边的padding
