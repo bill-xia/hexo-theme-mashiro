@@ -69,7 +69,7 @@ toc:
     default: false
 ```
 
-若`enable`为`false`则永远不会显示主题。`enable`为`true`时，若`default: false`，则只为`front-matter`中指明要生成目录(添加一行`toc: true`)时生成，否则对每篇文章生成一个目录。
+若`enable`为`false`则永远不会显示目录。`enable`为`true`时，若`default: false`，则只为`front-matter`中指明要生成目录(添加一行`toc: true`)时生成，否则对每篇文章生成一个目录。
 
 ### 边栏
 
