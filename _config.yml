@@ -9,11 +9,11 @@ excerpt_link: Read More
 fancybox: true
 
 # Sidebar
-sidebar: side
-widgets:
-- recent_posts
-- category
-- tagcloud
+# sidebar: none
+# widgets:
+# - recent_posts
+# - category
+# - tagcloud
 
 # toc open 
 toc:
@@ -41,6 +41,9 @@ valine:
   lang: zh-cn # i18n: zh-cn/en
   placeholder: Just go go # valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header info
+
+isso:
+  enable: false
 
 math:
   enable: true
