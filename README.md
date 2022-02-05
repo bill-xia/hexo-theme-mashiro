@@ -1,38 +1,51 @@
 # hexo-theme-mashiro
 
-> 这个项目已经不再维护，如果使用过程中遇到问题可以提issue，但不保证会得到回复，可能需要您自行二次开发。
-
 这是一个模仿CTeX默认样式的、简洁、学术风格的主题。[预览](http://mashiro.wilsonxia.cn)
+
+如果您决定使用这一主题，请至少阅读完整个使用章节。
 
 ## 使用
 
 ### 安装
 
 ``` sh
+# 在站点根目录下操作
 cd themes
 git clone git@github.com:bill-xia/hexo-theme-mashiro.git
 mv hexo-theme-mashiro mashiro # 或者直接重命名文件夹为mashiro
-npm uninstall hexo-renderer-marked # 卸载您当前的markdown引擎
+npm uninstall hexo-renderer-marked # 卸载当前的markdown引擎，如果不是marked需换成当前的markdown引擎
 npm install hexo-renderer-markdown-them
 npm install font-spider -g # 全局安装font-spider，用于字体压缩
 ```
 
-现在您的主题文件夹`themes`中已经有了一个名为`mashiro`的文件夹。Hexo有两个配置文件：站点配置文件，即站点根目录下的`_config.yml`，以及主题配置文件，即各个主题根目录下的`_config.yml`。为了方便您更新主题，强烈建议您总是将主题配置文件放在主题文件夹外（最好在根目录下）。配置方法为：
+现在您的主题文件夹`themes`中已经有了一个名为`mashiro`的文件夹。通常情况下，Hexo有两个配置文件：站点配置文件，即站点根目录下的`_config.yml`，以及主题配置文件，即各个主题目录下的`themes/theme-name/_config.yml`(但本主题没有)。
 
-1. 在站点根目录中的`_config.yml`文件中添加一行：`theme_config: _config.mashiro.yml`
-2. 在站点根目录中新建文件`_config.mashiro.yml`，并将`themes/mashiro/_config.yml`中的内容粘贴进去。
+Hexo5.0推出的新功能[替换主题配置文件](https://hexo.io/docs/configuration#Alternate-Theme-Config)允许您在站点根目录建立一个主题配置文件`_config.theme-name.yml`，Hexo会将该文件与主题根目录下的`themes/theme-name/_config.yml`中的配置进行合并。为了方便您更新主题，建议您使用这一功能，这样更新主题时只需删除`themes/mashiro`文件夹并重新安装即可。为了防止配置合并带来的问题，本主题目录下没有`_config.yml`，取而代之的是`_config.sample.yml`，这样您的配置文件只有站点根目录下的`_config.mashiro.yml`一个。
 
-理想情况是，在完成上述操作后，您不再需要接触`themes/mashiro`目录中的任何文件。这样，在您更新主题时，您原来的主题配置不会丢失。
+现在来配置这一功能。在站点根目录中新建文件`_config.mashiro.yml`，并将`themes/mashiro/_config.sample.yml`中的内容粘贴进去。
+
+如果您不想使用这一功能，或者您的`hexo`版本低于5.0且您不希望升级，那么请将`_config.sample.yml`重命名为`_config.yml`。
+
+理想情况是，在完成上述操作后，您不再需要接触`themes/mashiro`目录中的任何文件。
 
 ### 更新
 
 更新主题时，直接删除（或备份）`themes/mashiro`文件夹，再重复安装步骤即可。如果您安装时按照文档将主题配置文件移到了站点根目录下，那么您的配置不会丢失。更新时本项目将尽量兼容旧的配置文件，如果旧的配置文件失效了，还要麻烦您重新配置一次。
 
-### 配置
+### 站点配置
 
-修改`_config.yml`中`theme`项为`mashiro`即可开始使用本主题！
+站点配置文件`_config.yml`中需要修改的内容：
+
+``` yml
+theme: mashiro
+relative_link: true
+highlight:
+    enable: false
+```
 
 为了压缩中文字体，需要修改`_config.yml`的`relative_link`为`true`，因为`font-spider`是根据相对地址来查找字体文件的。
+
+为了正确地高亮，需要修改`_config.yml`的`highlight enable`为`false`以关闭hexo自带的高亮。
 
 ### 部署站点
 
@@ -63,7 +76,7 @@ Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的[`markdown-
 
 ### 文章目录
 
-可在`themes/mashiro/_config.yml`中配置，有两个参数`enable`和`default`：
+可在`themes/mashiro/_config.yml`中配置，有两个参数`enable`和`default`，他们都是必选的。
 
 ``` yml
 toc:
@@ -71,7 +84,7 @@ toc:
     default: false
 ```
 
-若`enable`为`false`则永远不会显示目录。`enable`为`true`时，若`default: false`，则只为`front-matter`中指明要生成目录(添加一行`toc: true`)时生成，否则对每篇文章生成一个目录。
+若`enable`为`false`则永远不会显示目录。`enable`为`true`时：若`default: false`，则仅当`front-matter`中指明要生成目录(添加一行`toc: true`)时生成目录；若`default: true`则对每篇文章生成一个目录。
 
 ### 边栏
 
@@ -87,15 +100,36 @@ widgets:
 
 ### 数学公式
 
-默认情况下“渲染数学公式”只是保证里面的内容不被markdown引擎渲染，把他们包围在`$ $`或`\( \)`之间输出到html。进一步的渲染交给浏览器端脚本完成，您可以选择使用`KaTeX`或`MathJax`，只需将配置文件中的`math, engine`项设为您需要的引擎。本主题默认使用`MathJax`。主题的样式文件对行间公式设置了溢出时滚动。
+``` yml
+math:
+  enable: true
+  engine: mathjax
+```
+
+默认情况下“渲染数学公式”只是保证里面的内容不被markdown引擎渲染，把他们包围在`$ $`或`\( \)`之间输出到html。进一步的渲染交给浏览器端脚本完成，您可以选择使用`KaTeX`或`MathJax`，只需将`engine`项设为您需要的引擎(字符串`mathjax`或`katex`)。本主题默认使用`MathJax`。主题的样式文件对行间公式设置了溢出时滚动。
 
 `MathJax3`的长公式自动换行机制[还没有实现](http://docs.mathjax.org/en/latest/output/linebreaks.html)，这会导致行内公式过长时的溢出被截断（尤其是移动端会有这种问题）。当这种情况发生时，我的建议是把它写成行间公式以使其溢出时滚动。
 
-`KaTeX`带有自动换行功能。由于引入`KaTeX`要引入`css`，会导致`font-spider`不工作，需要在`font-spider`命令中加入选项`--ignore katex.min.css`。另外，本主题已将`KaTeX`的默认字体大小修改为`1em`（默认为`1.21em`，与主题风格不符合），无论您选择的渲染引擎是`KaTeX`还是`MathJax`。
+`KaTeX`带有自动换行功能。由于引入`KaTeX`要引入`css`，会影响`font-spider`工作，需要在`font-spider`命令中加入选项`--ignore katex.min.css`。另外，本主题已将`KaTeX`的默认字体大小修改为`1em`（默认为`1.21em`，与主题风格不符合）。
 
 ### 网站底部信息
 
-这个主题的底部有我的网站的备案号，写在`themes/mashiro/layout/_partial/footer.ejs`里。如果您不需要备案号就删除，需要的话更改为您的备案号即可。
+```yml
+# copyright: |-
+#   <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a></br>
+#   All website licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></br>
+```
+
+在这里填写您希望显示在页面底部的内容，用html书写。这里书写的代码都将不经转义地出现在最终页面上，请小心书写。
+
+如果您不希望显示任何信息，请配置为
+
+``` yml
+copyright: |-
+  <p></p>
+```
+
+如果`copyright`这一项被注释掉了，Hexo会在底部显示默认的版权声明。
 
 ### 摘要
 
@@ -143,11 +177,23 @@ layout: "404"
 
 ### favicon
 
-将您的网站的favicon文件放在`themes/mashiro/source/`目录下，并更改`_config.mashiro.yml`中`favicon`项的路径。`themes/mashiro/source/`文件夹中的内容会被拷贝到`public/`的目录下，所以您应当填入：以`source`文件夹为根目录时，图标文件的绝对地址。
+``` yml
+# favicon: /favicon.ico
+```
+
+如果您要使用站点图标，请将您的网站的favicon文件放在`source/`目录下，并更改`_config.mashiro.yml`中`favicon`项的路径。`source/`文件夹中的内容会被拷贝到`public/`目录(即生成的静态站点的根目录)下，所以您应当填入：以`source/`文件夹为根目录时，图标文件的绝对地址。
+
+如果您不使用站点图标，请注释掉这一项。
 
 ### RSS订阅
 
-安装插件`hexo-generator-feed`，然后根据这个插件的官方文档修改`_config.yml`。最后修改`_config.mashiro.yml`第54行为您的rss路径。如果您不想开启这个功能，请注释掉`_config.mashiro.yml`第54行。
+``` yml
+# rss: /atom.xml
+```
+
+安装插件`hexo-generator-feed`，然后根据这个插件的官方文档修改站点配置文件`_config.yml`。最后修改`_config.mashiro.yml`中的`rss`项为rss路径。
+
+如果您不想开启这个功能，请在`_config.mashiro.yml`中注释掉这一项。
 
 ### 文章中插入视频
 
