@@ -19,7 +19,7 @@
   }
   %>
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <% if (page.description){ %>
   <meta name="description" itemprop="description" content="<%= page.description %>">
   <% } else if (config.description&&(!is_post())){ %>

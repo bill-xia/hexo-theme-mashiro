@@ -46,9 +46,6 @@ valine:
   placeholder: Just go go # valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header info
 
-isso:
-  enable: false
-
 math:
   enable: true
   engine: katex

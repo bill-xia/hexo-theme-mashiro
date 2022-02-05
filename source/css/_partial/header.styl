@@ -1,7 +1,6 @@
 #header
   height: banner-height
   position: relative
-  border-bottom: 1px solid color-border
 
 #header-outer
   height: 100%
@@ -25,7 +24,7 @@
   text-align: center
   height: logo-size
   position: absolute
-  top: 50%
+  top: 65%
   left: 0
   margin-top: logo-size * -0.5
 
@@ -47,9 +46,16 @@ $logo-text
 #subtitle-wrap
   margin: subtitle-size*2 20px 0
 
-#main-nav
-  float: left
-  margin-left: -15px
+#nav-outer
+  position: fixed
+  width: 100%
+  max-width: 100%
+  margin: 0 auto
+  background: rgba(255,255,255,0.732)
+  -webkit-backdrop-filter: saturate(180%) blur(20px)
+  backdrop-filter: saturate(180%) blur(20px)
+  z-index: 2
+  border-bottom: 1px solid #ddd
 
 $nav-link
   float: left

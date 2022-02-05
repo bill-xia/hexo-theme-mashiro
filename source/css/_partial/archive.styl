@@ -6,29 +6,39 @@
 
 .archive-year-wrap
   margin-bottom: 1em
+  font-size: 1.5em
 
 .archive-year
   @extend $block-caption
 
 .archives
   column-gap: 10px
-  @media mq-tablet
-    column-count: 2
-  @media mq-normal
-    column-count: 3
+  // @media mq-tablet
+  //   column-count: 2
+  // @media mq-normal
+  //   column-count: 3
 
 .archive-article
   avoid-column-break()
 
 .archive-article-inner
   padding: 10px
-  margin-bottom: 15px
+
+.archive-article-header
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.archive-article-line
+  height: 1px
+  border-top: 1px dashed #ddd
+  margin: 0 10px
+  flex-grow: 1
 
 .archive-article-title
   text-decoration: none
   font-weight: bold
   color: #555
-  transition: color 0.2s
   line-height: line-height
   &:hover
     color: color-link
@@ -40,8 +50,7 @@
   color: color-grey
   text-decoration: none
   font-size: 0.85em
-  line-height: 1em
-  margin-bottom: 0.5em
+  word-break: keep-all
   display: block
 
 #page-nav
@@ -59,8 +68,7 @@
     color: color-grey
     text-decoration: none
     &:hover
-      background: color-grey
-      color: #fff
+      color: #000
   .prev
     float: left
   .next
