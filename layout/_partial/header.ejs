@@ -1,25 +1,22 @@
-<header id="header">
-  <div id="banner"></div>
-  <div id="nav-outer">
-    <nav id="main-nav" class="outer">
-      <a id="main-nav-toggle" class="nav-icon"></a>
-      <% for (var i in theme.menu){ %>
-        <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
-      <% } %>
-      <div class="main-nav-space-between"></div>
-      <% if (theme.rss){ %>
-        <a id="nav-rss-link" class="nav-icon" href="<%- url_for(theme.rss) %>" title="<%= __('rss_feed') %>"></a>
-      <% } %>
-    </nav>
-  </div>
-  <div id="header-title" class="inner">
-    <h1 id="logo-wrap">
-      <a href="<%- url_for() %>" id="logo"><%= config.title.replace(/，/g, ', ').replace(/；/g, '; ').replace(/：/g, ': ').replace(/！/g, '! ').replace(/‘/g, '` ').replace(/’/g, "' ").replace(/“/g, ' “').replace(/”/g, "” ").replace(/（/g, ' (').replace(/）/g, ') ').replace(/。/g, '. ').replace(/？/g, '? ') %></a>
-    </h1>
-    <% if (theme.subtitle || config.subtitle){ %>
-      <h2 id="subtitle-wrap">
-        <a href="<%- url_for() %>" id="subtitle"><%= (theme.subtitle || config.subtitle).replace(/，/g, ', ').replace(/；/g, '; ').replace(/：/g, ': ').replace(/！/g, '! ').replace(/‘/g, '` ').replace(/’/g, "' ").replace(/“/g, ' “').replace(/”/g, "” ").replace(/（/g, ' (').replace(/）/g, ') ').replace(/。/g, '. ').replace(/？/g, '? ') %></a>
-      </h2>
+<div id="nav-outer">
+  <nav id="main-nav" class="outer">
+    <a id="main-nav-toggle" class="nav-icon"></a>
+    <% for (var i in theme.menu){ %>
+      <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
     <% } %>
-  </div>
-</header>
+    <div class="main-nav-space-between"></div>
+    <% if (theme.rss){ %>
+      <a id="nav-rss-link" class="nav-icon" href="<%- url_for(theme.rss) %>" title="<%= __('rss_feed') %>"></a>
+    <% } %>
+  </nav>
+</div>
+<div id="header-title">
+  <h1 id="logo-wrap">
+    <a href="<%- url_for() %>" id="logo"><%= config.title.replace(/，/g, ', ').replace(/；/g, '; ').replace(/：/g, ': ').replace(/！/g, '! ').replace(/‘/g, '` ').replace(/’/g, "' ").replace(/“/g, ' “').replace(/”/g, "” ").replace(/（/g, ' (').replace(/）/g, ') ').replace(/。/g, '. ').replace(/？/g, '? ') %></a>
+  </h1>
+  <% if (theme.subtitle || config.subtitle){ %>
+    <h2 id="subtitle-wrap">
+      <a href="<%- url_for() %>" id="subtitle"><%= (theme.subtitle || config.subtitle).replace(/，/g, ', ').replace(/；/g, '; ').replace(/：/g, ': ').replace(/！/g, '! ').replace(/‘/g, '` ').replace(/’/g, "' ").replace(/“/g, ' “').replace(/”/g, "” ").replace(/（/g, ' (').replace(/）/g, ') ').replace(/。/g, '. ').replace(/？/g, '? ') %></a>
+    </h2>
+  <% } %>
+</div>
