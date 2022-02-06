@@ -48,4 +48,4 @@ valine:
 
 math:
   enable: true
-  engine: katex
+  engine: mathjax
