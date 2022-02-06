@@ -57,6 +57,11 @@ $logo-text
   z-index: 2
   border-bottom: 1px solid #ddd
 
+#main-nav {
+  display: flex
+  align-items: center
+}
+
 $nav-link
   float: left
   color: #000
@@ -84,6 +89,10 @@ $nav-link
   font-size: 18px
   @media mq-mobile
     display: none
+
+.main-nav-space-between
+  height: 1px
+  flex-grow: 1
 
 #main-nav-toggle
   display: none
