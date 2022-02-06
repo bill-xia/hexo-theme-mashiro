@@ -5,7 +5,7 @@
   <div id="container">
     <div id="wrap">
       <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
-      <div class="outer">
+      <div id="content" class="outer">
         <section id="main"><%- body %></section>
         <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %>
           <%- partial('_partial/sidebar', null) %>

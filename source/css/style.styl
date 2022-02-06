@@ -82,6 +82,9 @@ body
   font: font-size font-serif, sans-serif
   -webkit-text-size-adjust: 100%
 
+#content
+  width: calc(100% - 30px)
+
 .outer
   clearfix()
   max-width: (column-width + gutter-width) * columns + gutter-width
@@ -115,6 +118,8 @@ body
   transition: 0.2s ease-out
   z-index: 1
   background: color-background
+  display: flex
+  flex-direction: column
   .mobile-nav-on &
     left: mobile-nav-width
 
