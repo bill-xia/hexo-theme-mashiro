@@ -29,47 +29,60 @@ input, button
   font-weight: normal
   src: url("fonts/lmmono10-regular.ttf")
 
-@font-face {
+@font-face
+  font-family: LM-Mono-10
+  font-style: italic
+  font-weight: normal
+  src: url("fonts/lmmono10-italic.ttf")
+
+@font-face
   font-family: LM-Roman-10
   font-style: normal
   font-weight: normal
   src: url("fonts/lmroman10-regular.ttf")
-}
 
-@font-face {
+@font-face
   font-family: LM-Roman-10
   font-style: italic
   font-weight: normal
   src: url("fonts/lmroman10-italic.ttf")
-}
 
-@font-face {
+@font-face
   font-family: LM-Roman-10
   font-style: normal
   font-weight: bold
   src: url("fonts/lmroman10-bold.ttf")
-}
 
-@font-face {
+@font-face
   font-family: LM-Roman-10
   font-style: italic
   font-weight: bold
   src: url("fonts/lmroman10-bolditalic.ttf")
-}
 
-@font-face {
-  font-family: Chinese
+@font-face
+  font-family: CJK
   font-style: normal
   font-weight: normal
-  src: url("fonts/HYShuSongErS.ttf")
-}
+  src: url(CJK-normal-normal-path)
 
-@font-face {
-  font-family: Chinese
+@font-face
+  font-family: CJK
   font-style: normal
   font-weight: bold
-  src: url("fonts/FZHTJW.ttf")
-}
+  src: url(CJK-normal-bold-path)
+
+// if (main-glyph == "CTeX")
+@font-face
+  font-family: CJK
+  font-style: italic
+  font-weight: normal
+  src: url(CJK-italic-normal-path)
+
+@font-face
+  font-family: CJKMono;
+  font-style: normal
+  font-weight: normal
+  src: url(CJKMono-normal-normal-path);
 
 html
   scroll-padding-top: 80px;
@@ -146,7 +159,6 @@ a
 @import "_extend"
 @import "_partial/header"
 @import "_partial/article"
-@import "_partial/comment"
 @import "_partial/archive"
 @import "_partial/footer"
 @import "_partial/highlight"
