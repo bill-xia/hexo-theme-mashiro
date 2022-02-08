@@ -40,26 +40,53 @@
     color: color-link
 
 .article-entry
+  if hexo-config("title-number")
+    counter-reset: h2
+    h2
+      &:before
+        padding-right: 1em
+        counter-increment: h2
+        content: counter(h2)
+      counter-reset: h3
+    h3
+      &:before
+        padding-right: 1em
+        counter-increment: h3
+        content: counter(h2) "." counter(h3)
+      counter-reset: h4
+    h4
+      &:before
+        padding-right: 1em
+        counter-increment: h4
+        content: counter(h2) "." counter(h3) "." counter(h4)
+      counter-reset: h5
+    h5
+      &:before
+        padding-right: 1em
+        counter-increment: h5
+        content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5)
+      counter-reset: h6
+  text-align: justify
   @extend $base-style
   clearfix()
   color: color-default
   padding: 0 article-padding
   p, table
     line-height: line-height
-    margin: line-height 0
+    margin: 0.5 * line-height 0
   h1, h2, h3, h4, h5, h6
     font-weight: bold
-  h1, h2, h3, h4, h5, h6
     line-height: line-height-title
-    margin: line-height-title 0
+    margin: 1.5 * line-height-title 0 line-height-title
   a
     color: color-link
     text-decoration: none
     &:hover
       text-decoration: underline
   ul, ol, dl
-    margin-top: line-height
-    margin-bottom: line-height
+    margin-top: 0.5 * line-height
+    margin-bottom: 0.5 * line-height
+    margin-left: 2em
   img, video
     max-width: 100%
     height: auto
@@ -84,13 +111,13 @@
     text-align: center
   blockquote
     font-family: font-serif
-    margin: 20px 0
-    padding: 1px 20px
-    border-left: 5px solid color-border
-    background: #f7f7f7
+    font-style: italic
+    margin: line-height 0
+    padding: 0px 2em
+    // border-left: 5px solid color-border
+    // background: #f7f7f7
     footer
       font-size: font-size
-      margin: line-height 0
       font-family: font-sans
       cite
         &:before
@@ -127,7 +154,8 @@
       height: 100%
       margin-top: 0
   .markdown-them-math-inline
-    padding: 0 0.2em
+    &:before, &:after
+      content: "\2009"
   ul li input
     margin-right: 10px
   mjx-container

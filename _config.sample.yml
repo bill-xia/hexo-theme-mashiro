@@ -49,3 +49,5 @@ valine:
 math:
   enable: true
   engine: mathjax
+
+title-number: true

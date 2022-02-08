@@ -11,7 +11,7 @@ function trans_punc(content) {
         replace(/”/g, "” ").
         replace(/（/g, ' (').
         replace(/）/g, ') ').
-        replace(/。/g, '. ').
+        replace(/。/g, '.&nbsp;&nbsp;').
         replace(/？/g, '? ');
     return content;
 }
