@@ -2,7 +2,7 @@
 menu:
   Home: /
   Archives: /archives
-  About: /about
+  # About: /about
 
 # Content
 excerpt_link: Read More
@@ -50,4 +50,8 @@ math:
   enable: true
   engine: mathjax
 
-title-number: true
+# title-number : all | config | none
+title-number: config
+
+# blockquote: italic | grey
+blockquote: grey

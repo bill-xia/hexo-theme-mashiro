@@ -2,6 +2,7 @@
 @import "_variables"
 @import "_util/mixin"
 @import "_util/grid"
+@import "_extend"
 
 global-reset()
 
@@ -60,29 +61,40 @@ input, button
   src: url("fonts/lmroman10-bolditalic.ttf")
 
 @font-face
-  font-family: CJK
+  font-family: Chinese
   font-style: normal
   font-weight: normal
-  src: url(CJK-normal-normal-path)
+  src: url(Chinese-normal-normal-path)
 
 @font-face
-  font-family: CJK
+  font-family: Chinese
   font-style: normal
   font-weight: bold
-  src: url(CJK-normal-bold-path)
+  src: url(Chinese-normal-bold-path)
 
 // if (main-glyph == "CTeX")
 @font-face
-  font-family: CJK
+  font-family: Chinese
   font-style: italic
   font-weight: normal
-  src: url(CJK-italic-normal-path)
+  src: url(Chinese-italic-normal-path)
 
 @font-face
-  font-family: CJKMono;
+  font-family: ChineseMono;
   font-style: normal
   font-weight: normal
-  src: url(CJKMono-normal-normal-path);
+  src: url(ChineseMono-normal-normal-path);
+
+// @font-face
+//   font-family: biaodian;
+//   src: url("fonts/SS-subset.ttf");
+//   unicode-range:
+//     U+"+FF0E", U+"+2014", U+"+2026", U+"+00B7", U+"+201C-201D", U+"+2018-2019", U+"+25CF",
+//     U+"+3002", U+"+FF0C", U+"+3001",
+//     U+"+FF1B", U+"+FF1A", U+"+FF1F", U+"+FF01",
+//     U+"+FF0D", U+"+FF0F", U+"+FF3C",
+//     U+"+300C-300F",
+//     U+"+300A-300B", U+"+3008-3009", U+"+FF08-FF09", U+"+3014-3015"
 
 html
   scroll-padding-top: 80px;
@@ -96,13 +108,13 @@ body
   -webkit-text-size-adjust: 100%
 
 #content
-  width: calc(100% - 30px)
+  margin: 0 auto
+  @extend $variable-width
 
 .outer
   clearfix()
-  max-width: (column-width + gutter-width) * columns + gutter-width
   margin: 0 auto
-  padding: 0 article-padding
+  @extend $variable-width
 
 .inner
   column(columns)
@@ -156,7 +168,6 @@ if sidebar is left
 a
   transition: 0.2s
 
-@import "_extend"
 @import "_partial/header"
 @import "_partial/article"
 @import "_partial/archive"

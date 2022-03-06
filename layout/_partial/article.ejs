@@ -11,7 +11,7 @@
       </header>
     <% } %>
     <%- partial('toc') %>
-    <div class="e-content article-entry" itemprop="articleBody">
+    <div class="e-content article-entry<% if (theme["title-number"] == "config" && post["title-number"] == true) { %> article-with-titlenum<% } %>" itemprop="articleBody">
       <% if (post.excerpt && index){ %>
         <%- post.excerpt %>
         <% if (theme.excerpt_link){ %>

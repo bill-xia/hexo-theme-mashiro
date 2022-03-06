@@ -54,16 +54,23 @@
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
       displayMath: [['$$', '$$'], ['\\[', '\\]']],
-    },
-    chtml: {
-      matchFontHeight: true
     }
   };
 </script>
-
+<!-- <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+    CommonHTML: {
+      linebreaks: false
+    }
+  });
+  </script> -->
 <script type="text/javascript" id="MathJax-script" async
   src="<%- url_for('mathjax/tex-chtml.js') %>">
 </script>
+<!-- <script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
+</script> -->
 <% } %>
 
 <% if(theme.math.enable && theme.math.engine == 'katex'){ %>

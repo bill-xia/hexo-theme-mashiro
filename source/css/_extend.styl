@@ -55,3 +55,90 @@ $base-style
     list-style: decimal
   dt
     font-weight: bold
+
+$title-number
+  counter-reset: h2
+  h2
+    &:before
+      padding-right: 1em
+      counter-increment: h2
+      content: counter(h2)
+    counter-reset: h3
+  h3
+    &:before
+      padding-right: 1em
+      counter-increment: h3
+      content: counter(h2) "." counter(h3)
+    counter-reset: h4
+  h4
+    &:before
+      padding-right: 1em
+      counter-increment: h4
+      content: counter(h2) "." counter(h3) "." counter(h4)
+    counter-reset: h5
+  h5
+    &:before
+      padding-right: 1em
+      counter-increment: h5
+      content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5)
+    counter-reset: h6
+
+$variable-width
+  @media screen
+    width: 44em
+  @media screen and (max-width: 810px)
+    width: 43em
+  @media screen and (max-width: 790px)
+    width: 42em
+  @media screen and (max-width: 770px)
+    width: 41em
+  @media screen and (max-width: 750px)
+    width: 40em
+  @media screen and (max-width: 730px)
+    width: 39em
+  @media screen and (max-width: 710px)
+    width: 38em
+  @media screen and (max-width: 690px)
+    width: 37em
+  @media screen and (max-width: 670px)
+    width: 36em
+  @media screen and (max-width: 650px)
+    width: 35em
+  @media screen and (max-width: 630px)
+    width: 34em
+  @media screen and (max-width: 610px)
+    width: 33em
+  @media screen and (max-width: 590px)
+    width: 32em
+  @media screen and (max-width: 570px)
+    width: 31em
+  @media screen and (max-width: 550px)
+    width: 30em
+  @media screen and (max-width: 530px)
+    width: 29em
+  @media screen and (max-width: 510px)
+    width: 28em
+  @media screen and (max-width: 490px)
+    width: 27em
+  @media screen and (max-width: 470px)
+    width: 26em
+  @media screen and (max-width: 454px)
+    width: 25em
+  @media screen and (max-width: 438px)
+    width: 24em
+  @media screen and (max-width: 422px)
+    width: 23em
+  @media screen and (max-width: 406px)
+    width: 22em
+  @media screen and (max-width: 390px)
+    width: 21em
+  @media screen and (max-width: 374px)
+    width: 20em
+  @media screen and (max-width: 358px)
+    width: 19em
+  @media screen and (max-width: 342px)
+    width: 18em
+  @media screen and (max-width: 326px)
+    width: 17em
+  @media screen and (max-width: 310px)
+    width: 16em

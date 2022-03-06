@@ -7,7 +7,6 @@
 
 .article-meta
   clearfix()
-  padding: 0 article-padding
 
 .article-date
   @extend $block-caption
@@ -27,7 +26,7 @@
   margin: 0 12px 8px
 
 .article-header
-  padding: article-padding
+  padding: article-padding 0
 
 .article-title
   text-decoration: none
@@ -39,38 +38,22 @@
   a&:hover
     color: color-link
 
+if (hexo-config("title-number") == "config")
+  .article-with-titlenum
+    @extend $title-number
+
 .article-entry
-  if hexo-config("title-number")
-    counter-reset: h2
-    h2
-      &:before
-        padding-right: 1em
-        counter-increment: h2
-        content: counter(h2)
-      counter-reset: h3
-    h3
-      &:before
-        padding-right: 1em
-        counter-increment: h3
-        content: counter(h2) "." counter(h3)
-      counter-reset: h4
-    h4
-      &:before
-        padding-right: 1em
-        counter-increment: h4
-        content: counter(h2) "." counter(h3) "." counter(h4)
-      counter-reset: h5
-    h5
-      &:before
-        padding-right: 1em
-        counter-increment: h5
-        content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5)
-      counter-reset: h6
-  text-align: justify
+  if hexo-config("title-number") == "all"
+    @extend $title-number
+  @media screen
+    text-align: justify
+  @media screen and (max-width: 600px)
+    text-align: start
   @extend $base-style
   clearfix()
+  .markdown-them-math-inline
+    margin: 0.25em
   color: color-default
-  padding: 0 article-padding
   p, table
     line-height: line-height
     margin: 0.5 * line-height 0
@@ -112,14 +95,18 @@
     text-align: center
   blockquote
     font-family: font-serif
-    font-style: italic
+    if (blockquote == "italic")
+      font-style: italic
     margin: line-height 0
     padding: 0px 2em
-    // border-left: 5px solid color-border
-    // background: #f7f7f7
+    if (blockquote == "grey")
+      padding: 0.25em 2em 0.25em calc(2em - 5px)
+      border-left: 5px solid color-border
+      background: #f7f7f7
     footer
       font-size: font-size
       font-family: font-sans
+      margin: 0.5 * line-height 0
       cite
         &:before
           content: "—"
@@ -154,8 +141,6 @@
       width: 100%
       height: 100%
       margin-top: 0
-  .markdown-them-math-inline
-    margin: 0 0.183333em
   ul li input
     margin-right: 10px
   mjx-container
@@ -164,17 +149,22 @@
     outline: 0
   code
     word-break: break-all
-  .katex
-    font-size: 1em
+  .katex, .mjx-chtml, .MathJax
+    font-size: 1em !important
   .highlight
     position: relative
+    &:hover .copy-button
+      opacity: 1
   .copy-button
+    @media (any-hover: hover)
+      opacity: 0
     position: absolute
     right: 15px
     top: 15px
     background: #fff
     border: 1px solid #ddd
     padding: 0px 5px
+    transition: opacity 0.2s
   .copy-button:hover
     cursor: pointer
   pre

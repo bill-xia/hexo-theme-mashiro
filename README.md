@@ -1,6 +1,6 @@
 # hexo-theme-mashiro
 
-这是一个模仿CTeX默认样式的、简洁、学术风格的主题。[预览](http://mashiro.wilsonxia.cn)
+这是一个模仿CTeX默认样式的、简洁、学术风格的主题。[预览](https://mashiro.wilsonxia.cn)
 
 如果您决定使用这一主题，请至少阅读完整个使用章节。
 
@@ -20,27 +20,29 @@ npm install font-spider -g # 全局安装font-spider，用于字体压缩
 
 现在您的主题文件夹`themes`中已经有了一个名为`mashiro`的文件夹。通常情况下，Hexo有两个配置文件：站点配置文件，即站点根目录下的`_config.yml`，以及主题配置文件，即各个主题目录下的`themes/theme-name/_config.yml`(但本主题没有)。
 
-Hexo5.0推出的新功能[替换主题配置文件](https://hexo.io/docs/configuration#Alternate-Theme-Config)允许您在站点根目录建立一个主题配置文件`_config.theme-name.yml`，Hexo会将该文件与主题根目录下的`themes/theme-name/_config.yml`中的配置进行合并。为了方便您更新主题，建议您使用这一功能，这样更新主题时只需删除`themes/mashiro`文件夹并重新安装即可。为了防止配置合并带来的问题，本主题目录下没有`_config.yml`，取而代之的是`_config.sample.yml`，这样您的配置文件只有站点根目录下的`_config.mashiro.yml`一个。
+Hexo5.0推出的新功能[替换主题配置文件](https://hexo.io/docs/configuration#Alternate-Theme-Config)允许您在站点根目录建立一个主题配置文件`_config.theme-name.yml`，Hexo会将该文件与主题根目录下的`themes/theme-name/_config.yml`中的配置进行**合并**。为了方便您更新主题，建议您使用这一功能，这样更新主题时只需删除`themes/mashiro`文件夹并重新安装即可。为了防止配置合并带来的麻烦，本主题目录下没有`_config.yml`，取而代之的是`_config.sample.yml`，这样您的配置文件只有站点根目录下的`_config.mashiro.yml`一个。
 
 现在来配置这一功能。在站点根目录中新建文件`_config.mashiro.yml`，并将`themes/mashiro/_config.sample.yml`中的内容粘贴进去。
 
-如果您不想使用这一功能，或者您的`hexo`版本低于5.0且您不希望升级，那么请将`_config.sample.yml`重命名为`_config.yml`。
+如果您不想使用这一功能，或者您的`hexo`版本低于5.0且您不希望升级，那么请将`themes/mashiro/_config.sample.yml`重命名为`themes/mashiro/_config.yml`。
 
 理想情况是，在完成上述操作后，您不再需要接触`themes/mashiro`目录中的任何文件。
 
 ### 更新
 
-更新主题时，直接删除（或备份）`themes/mashiro`文件夹，再重复安装步骤即可。如果您安装时按照文档将主题配置文件移到了站点根目录下，那么您的配置不会丢失。更新时本项目将尽量兼容旧的配置文件，如果旧的配置文件失效了，还要麻烦您重新配置一次。
+更新主题时，直接删除（或备份）`themes/mashiro`文件夹，再重复安装步骤即可。如果您安装时按照文档将主题配置文件移到了站点根目录下，那么您的配置不会丢失。
+
+更新时本项目将尽量兼容旧的配置文件，如果旧的配置文件失效了，还要麻烦您重新配置一次。一般情况下您不需要编辑配置文件，除非您想要应用一些新功能。
 
 ### 站点配置
 
-站点配置文件`_config.yml`中需要修改的内容：
+**站点**配置文件`_config.yml`中需要修改的内容：
 
 ``` yml
 theme: mashiro
 relative_link: true
 highlight:
-    enable: false
+  enable: false
 ```
 
 为了压缩中文字体，需要修改`_config.yml`的`relative_link`为`true`，因为`font-spider`是根据相对地址来查找字体文件的。
@@ -74,17 +76,33 @@ hexo deploy
 
 Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的[`markdown-them`引擎](https://github.com/bill-xia/markdown-them)渲染，支持渲染数学公式、Todo-list等。
 
-### 文章目录
+### 功能及配置
 
-可在`themes/mashiro/_config.yml`中配置，有两个参数`enable`和`default`，他们都是必选的。
+本节的内容都在 `_config.mashiro.yml` 中配置，如有在**站点**配置文件操作的情况会特别指明。
+
+### 导航栏
 
 ``` yml
-toc:
-    enable: true
-    default: false
+menu:
+  Home: /
+  Archives: /archives
+  # About: /about
 ```
 
-若`enable`为`false`则永远不会显示目录。`enable`为`true`时：若`default: false`，则仅当`front-matter`中指明要生成目录(添加一行`toc: true`)时生成目录；若`default: true`则对每篇文章生成一个目录。
+配置导航栏的条目。冒号前为条目的显示名称，冒号后为链接指向的路径，请使用绝对路径。
+
+#### 关于页
+
+被注释掉的那一行关于页不会被自动生成。如果您想要一个关于页面，可以在`source/`中新建一个名为`about`的文件夹，在这里新建一个名为`index.md`的文件，在其中填入以下内容：
+
+``` markdown
+---
+title: 关于
+layout: about
+---
+
+Something about you.
+```
 
 ### 边栏
 
@@ -97,20 +115,6 @@ widgets:
 ```
 
 详见[landscape主题配置](https://github.com/hexojs/hexo-theme-landscape#sidebar)。
-
-### 数学公式
-
-``` yml
-math:
-  enable: true
-  engine: mathjax
-```
-
-默认情况下“渲染数学公式”只是保证里面的内容不被markdown引擎渲染，把他们包围在`$ $`或`\( \)`之间输出到html。进一步的渲染交给浏览器端脚本完成，您可以选择使用`KaTeX`或`MathJax`，只需将`engine`项设为您需要的引擎(字符串`mathjax`或`katex`)。本主题默认使用`MathJax`。主题的样式文件对行间公式设置了溢出时滚动。
-
-`MathJax3`的长公式自动换行机制[还没有实现](http://docs.mathjax.org/en/latest/output/linebreaks.html)，这会导致行内公式过长时的溢出被截断（尤其是移动端会有这种问题）。当这种情况发生时，我的建议是把它写成行间公式以使其溢出时滚动。
-
-`KaTeX`带有自动换行功能。由于引入`KaTeX`要引入`css`，会影响`font-spider`工作，需要在`font-spider`命令中加入选项`--ignore katex.min.css`。另外，本主题已将`KaTeX`的默认字体大小修改为`1em`（默认为`1.21em`，与主题风格不符合）。
 
 ### 网站底部信息
 
@@ -131,15 +135,43 @@ copyright: |-
 
 如果`copyright`这一项被注释掉了，Hexo会在底部显示默认的版权声明。
 
-### 摘要
+### 文章目录
 
-如果您的摘要是文章的前缀，您可以在Markdown文件中摘要结束的位置添加`<!-- more -->`（最好令这个语句单独成段），Hexo会自动将该标签之前的部分作为摘要在首页显示，并显示`Read More`按钮，按下后将跳转到文章页面内`<!-- more -->`后的段落处。这样生成的摘要仍然会出现在正文中。
+有两个参数`enable`和`default`，他们都是必选的。
 
-如果您需要另行书写摘要，可以在`front-matter`的`excerpt`字段处指定。似乎不支持`Markdown`。
+``` yml
+toc:
+  enable: true
+  default: false
+```
+
+若`enable`为`false`则永远不会显示目录。
+
+`enable`为`true`时：若`default: false`，则仅当`front-matter`中指明要生成目录(添加一行`toc: true`)时生成目录；若`default: true`则对每篇文章生成一个目录。
+
+### favicon
+
+``` yml
+# favicon: /favicon.ico
+```
+
+如果您要使用站点图标，请将您的网站的favicon文件放在`source/`目录下，并更改`_config.mashiro.yml`中`favicon`项的路径。`source/`文件夹中的内容会被拷贝到`public/`目录(即生成的静态站点的根目录)下，所以您应当填入：以`source/`文件夹为根目录时，图标文件的绝对地址。
+
+如果您不使用站点图标，请在`_config.mashiro.yml`中注释掉这一项。
+
+### RSS订阅
+
+``` yml
+# rss: /atom.xml
+```
+
+安装插件`hexo-generator-feed`，然后根据这个插件的官方文档修改站点配置文件`_config.yml`。最后修改`_config.mashiro.yml`中的`rss`项为rss路径。
+
+如果您不想开启这个功能，请在`_config.mashiro.yml`中注释掉这一项。
 
 ### 正文标点
 
-我将正文中的标点都改成了英文标点与空格，以使其更加美观。
+由于自带的中文字体标点不甚美观，我将正文中的标点都改成了英文标点与空格的组合，以使其更加美观。
 
 要开启这一特性，请在根目录下的`_config.yml`中加入一行：
 
@@ -151,49 +183,45 @@ transpunc: true
 
 如果您想对这一特性进行修改，请修改`themes/mashiro/scripts/transpunc.js`。
 
-### 404页面
-
-这一步目前是很麻烦的，我正在修改主题让它变得简单。
-
-如果使用主题的404页面，可以在博客根目录下的`source`文件夹内创建404文件夹，创建`404/index.md`文件并写入：
-
-``` Markdown
----
-title: 404
-layout: "404"
----
-
-404
-```
-
-内容为您希望在正文处显示的内容。这样操作后，生成的404页面会出现在`public/404/index.html`中。下一步通常的做法是在您的服务器软件（如apache,nginx）上，设置在404错误时向用户提供这个页面。目前发现了2个问题：
-
-1. 用户可以访问`yoursite.com/404`得到这个404页面，但状态码是`200 OK`，而且这可能会导致sitemap,rss等插件认为这是一个有内容的页面并为它创建链接。
-2. 404页面中样式文件的路径为相对路径，所以当用户访问一个形如`yoursite.com/path/not/exist`的地址时，文件`style.css`的路径会被解析为`yoursite.com/path/not/style.css`，而这个文件是不存在的。
-
-所以目前的解决方案是：生成一次404页面后，保存在其他路径中，并手动将html文件中的相对路径转换为绝对路径（如，`../index.html`->`/index.html`）。然后删除404文件夹（或者将文件夹重命名为`_404`），重新生成站点。将404页面单独保存在服务器的其他地方，并指定服务器为404访问返回该页面即可。
-
-这太麻烦了，我在尝试让它变得简单一些。
-
-### favicon
+### 数学公式
 
 ``` yml
-# favicon: /favicon.ico
+math:
+  enable: true
+  engine: mathjax
 ```
 
-如果您要使用站点图标，请将您的网站的favicon文件放在`source/`目录下，并更改`_config.mashiro.yml`中`favicon`项的路径。`source/`文件夹中的内容会被拷贝到`public/`目录(即生成的静态站点的根目录)下，所以您应当填入：以`source/`文件夹为根目录时，图标文件的绝对地址。
+默认情况下“渲染数学公式”只是保证里面的内容不被markdown引擎渲染，把他们包围在`$ $`或`\( \)`之间输出到html。进一步的渲染交给浏览器端脚本完成，您可以选择使用`KaTeX`或`MathJax`，只需将`engine`项设为您需要的引擎(字符串`mathjax`或`katex`)。本主题默认使用`MathJax`。主题的样式文件对行间公式设置了溢出时滚动。
 
-如果您不使用站点图标，请注释掉这一项。
+`MathJax3`的长公式自动换行机制[还没有实现](http://docs.mathjax.org/en/latest/output/linebreaks.html)，这会导致行内公式过长时的溢出被截断（尤其是移动端会有这种问题）。当这种情况发生时，我的建议是把它写成行间公式以使其溢出时滚动。
 
-### RSS订阅
+`KaTeX`带有自动换行功能。由于引入`KaTeX`要引入`css`，会影响`font-spider`工作，需要在`font-spider`命令中加入选项`--ignore katex.min.css`。另外，本主题已将`KaTeX`的默认字体大小修改为`1em`（默认为`1.21em`，与主题风格不符合）。
+
+### 自动标题序号
+
+为您的文章的 2、3、4、5 级标题提供标号，正如 LaTeX 所做的那样。
 
 ``` yml
-# rss: /atom.xml
+title-number: config
 ```
 
-安装插件`hexo-generator-feed`，然后根据这个插件的官方文档修改站点配置文件`_config.yml`。最后修改`_config.mashiro.yml`中的`rss`项为rss路径。
+这个选项有三种取值：`all`, `config`和`none`。`all`的意思是为每篇文章都加入自动标号，`none`的意思是关闭这个功能。当取值`config`时，您需要在想要开启标号的文章的`front-matter`中设置`title-number: true`以显示标号。
 
-如果您不想开启这个功能，请在`_config.mashiro.yml`中注释掉这一项。
+### Blockquote样式
+
+更改您的blockquote样式。有两种选择：GitHub风格的灰色引用块，和印刷风格的斜体引用块。
+
+```
+blockquote: grey
+```
+
+有两种取值：`grey`和`italic`。取为`grey`时是GitHub风格，`italic`时是印刷风格。这个配置是全站应用的，不能对各篇文章单独配置。
+
+### 摘要
+
+如果您的摘要是文章的前缀，您可以在Markdown文件中摘要结束的位置添加`<!-- more -->`（最好令这个语句单独成段），Hexo会自动将该标签之前的部分作为摘要在首页显示，并显示`Read More`按钮，按下后将跳转到文章页面内`<!-- more -->`后的段落处。这样生成的摘要仍然会出现在正文中。
+
+如果您需要另行书写摘要，可以在相应文章的`front-matter`的`excerpt`字段中指定。似乎不支持`Markdown`。
 
 ### 文章中插入视频
 
@@ -207,7 +235,42 @@ layout: "404"
 
 本主题为这个`aspect-ratio`类写了一点样式以使其更加美观。其他问题请参考讲`bilibili`外链播放器`url`参数的文章。
 
-## 关于日文/繁中支持
+## 一些麻烦事
+
+### 404页面
+
+这一步目前有点麻烦，好在麻烦是一次性的，而且结果比较完美。
+
+如果使用主题的404页面，可以在博客根目录下的`source`文件夹内创建404文件夹，创建`404/index.md`文件并写入：
+
+``` Markdown
+---
+title: 404
+layout: "404"
+sitemap: false
+---
+
+404
+```
+
+内容为您希望在正文处显示的内容。这样操作后，生成的404页面会出现在`public/404/index.html`中。下一步通常的做法是在您的服务器软件（如apache,nginx）上，设置在404错误时向用户提供这个页面。目前发现了2个问题：
+
+1. 用户可以访问`yoursite.com/404`得到这个404页面，但状态码是`200 OK`，严谨地讲这应该是`404 Not Found`。
+2. 404页面中样式文件的路径为相对路径，所以当用户访问一个形如`yoursite.com/path/not/exist`的地址时，文件`style.css`的路径会被解析为`yoursite.com/path/not/style.css`，而这个文件是不存在的。
+
+所以目前的解决方案是：生成一次404页面后，手动将html文件中的相对路径转换为绝对路径（如，`../index.html`->`/index.html`）。将这个404页面单独保存在服务器的其他地方，并指定服务器为404访问返回该页面即可。每当您想修改404页面时，就要做一次这件事。
+
+这还没有结束，我们还需要在每次发布时为404页面压缩字体。上面的事情做过一次之后，我们每次publish时需要做的事有：
+
+1. `hexo g`生成站点。此时会生成`public/404/index.html`这个页面
+2. `font-spider ...`压缩字体，此时会将404页面的文字和其他页面的文字共同压缩。
+3. 删除`public/404`文件夹
+
+我们可以将这些事写进一个脚本里。这样我们就解决了上面所说的两个问题。
+
+### 关于日文/繁中支持
+
+> 下面的内容可能已经过时。这个主题并不打算支持日文和繁体中文，烦请您自行二次开发。如果您取得了一定成果，欢迎提 issue 分享您的经验。
 
 如果您的博客全部使用日语，可以修改`themes/mashiro/source/css/_variables.styl`，将`Chinese`换成一款日文衬线字体，如`YuMincho`或`MS Mincho`。
 
@@ -215,16 +278,14 @@ layout: "404"
 
 繁中同理，可以先找找汉仪书宋系列有没有做繁体字，如果没有，可以挑一个您喜欢的繁体中文字体，放到`themes/mashiro/source/fonts`目录下，再在`themes/mashiro/source/css/style.styl`中将`@font-face { font-family: Chinese; }`的字体都更换成您的字体即可。如果简繁混排，可以在`style.styl`中添加新的`@font-face { font-family: Traditional-Chinese; }`并指向您的字体，并在`_variables.styl`的`font-sans`和`font-serif`变量中加入新字体，顺序视您的需要而定，哪种字体用得多就放在前面。
 
-## Todo List
+### 一些可能的问题
 
-- [ ] 楷体和仿宋体字体文件加入
-- [ ] 寻找兼容汉仪书宋的繁体中文、日文与韩文正文字体
-- [ ] 如果上条做不到，寻找CJK语系全兼容的同时不太破坏CTeX风格的字体
-- [x] 代码块一键复制
-- [ ] font-spider脚本简化
-- [x] 主题内置KaTeX源文件
-- [x] 主题内配置数学渲染引擎
-- [ ] 404页面快速生成
-- [x] 需要修改源代码的内容都写入配置
-- [x] 边栏标题左边的padding
-- [ ] 评论服务配置
+如果您不怕麻烦，可以更新到最新版本的主题，您应当可以获得文档中提及的所有feature。
+
+Q: 为什么有些代码块不能加载`Copy`按钮？
+
+A: 如果您的代码块在markdown中是用`{% codeblock %} {% endcodeblock %}`包裹起来的，那么很遗憾，本主题暂不支持这种写法，请换用markdown的`` ``` ``语法。如果确实是使用`` ``` ``包裹的，请您运行`npm update`升级所有npm包至最新版试试，有可能这个问题已经被我修复了。如果还是不行，请提交issue。
+
+Q: 为什么我的文章不能显示？
+
+A: 请为您的文章加入`front-matter`。如果还是不行，请提交issue。
