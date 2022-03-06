@@ -11,8 +11,7 @@
 ``` sh
 # 在站点根目录下操作
 cd themes
-git clone git@github.com:bill-xia/hexo-theme-mashiro.git
-mv hexo-theme-mashiro mashiro # 或者直接重命名文件夹为mashiro
+git clone git@github.com:bill-xia/hexo-theme-mashiro.git mashiro
 npm uninstall hexo-renderer-marked # 卸载当前的markdown引擎，如果不是marked需换成当前的markdown引擎
 npm install hexo-renderer-markdown-them
 npm install font-spider -g # 全局安装font-spider，用于字体压缩
