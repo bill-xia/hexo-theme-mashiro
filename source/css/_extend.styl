@@ -84,8 +84,12 @@ $title-number
     counter-reset: h6
 
 $variable-width
-  @media screen
-    width: 44em
+  if (sidebar) and !(sidebar is bottom)
+    @media screen
+      width: 60em
+  else
+    @media screen
+      width: 44em
   @media screen and (max-width: 810px)
     width: 43em
   @media screen and (max-width: 790px)
