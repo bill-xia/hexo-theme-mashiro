@@ -85,16 +85,16 @@ input, button
   font-weight: normal
   src: url(ChineseMono-normal-normal-path);
 
-// @font-face
-//   font-family: biaodian;
-//   src: url("fonts/SS-subset.ttf");
-//   unicode-range:
-//     U+"+FF0E", U+"+2014", U+"+2026", U+"+00B7", U+"+201C-201D", U+"+2018-2019", U+"+25CF",
-//     U+"+3002", U+"+FF0C", U+"+3001",
-//     U+"+FF1B", U+"+FF1A", U+"+FF1F", U+"+FF01",
-//     U+"+FF0D", U+"+FF0F", U+"+FF3C",
-//     U+"+300C-300F",
-//     U+"+300A-300B", U+"+3008-3009", U+"+FF08-FF09", U+"+3014-3015"
+@font-face
+  font-family: biaodian;
+  src: url("fonts/biaodian.ttf");
+  // unicode-range:
+  //   U+"+FF0E", U+"+2014", U+"+2026", U+"+00B7", U+"+201C-201D", U+"+2018-2019", U+"+25CF",
+  //   U+"+3002", U+"+FF0C", U+"+3001",
+  //   U+"+FF1B", U+"+FF1A", U+"+FF1F", U+"+FF01",
+  //   U+"+FF0D", U+"+FF0F", U+"+FF3C",
+  //   U+"+300C-300F",
+  //   U+"+300A-300B", U+"+3008-3009", U+"+FF08-FF09", U+"+3014-3015"
 
 html
   scroll-padding-top: 80px;
@@ -177,6 +177,7 @@ a
 @import "_partial/about"
 @import "_partial/bilibili"
 @import "_partial/toc"
+@import "_partial/biaodian"
 
 if sidebar
   @import "_partial/sidebar"

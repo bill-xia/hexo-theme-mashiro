@@ -1,0 +1,31 @@
+.bd-box
+  .bd-beg
+    & > h-inner
+      margin-right: -0.5em
+    &:after
+      display: inline
+      content: " "
+      font: 0.825em Courier
+      visibility: hidden
+      letter-spacing: 0;
+      white-space: normal;
+  .bd-beg:not(:last-child):after
+    content: ""
+    display: none
+  .bd-end
+    & > h-inner
+      margin-left: -0.5em
+    &:before
+      display: inline
+      content: " "
+      font: 0.825em Courier
+      visibility: hidden
+      letter-spacing: 0;
+      white-space: normal;
+  .bd-end + .bd-end:before
+    content: ""
+    display: none
+
+html
+  font-feature-settings: "liga","locl" 0
+  -webkit-hyphens: auto

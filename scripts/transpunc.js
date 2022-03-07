@@ -3,23 +3,13 @@ function trans_punc(content) {
         return null;
     }
     content = content.
-        replace(/，/g, ', ').
-        replace(/；/g, '; ').
-        replace(/：/g, ': ').
-        replace(/！/g, '! ').
-        replace(/“/g, ' “').
-        replace(/”/g, "” ").
-        replace(/（/g, ' (').
-        replace(/）/g, ') ').
-        // replace(/。([^\n])/g, '.&nbsp;&nbsp;$1').
-        // replace(/。/g, '.').
-        replace(/？/g, '? ');
+        replace(/([，；！：、？：）》」』】（《「『【。〈〉“”]+)/g, '<span class="bd-box">$1</span>').
+        replace(/(，|；|！|：|、|？|：|）|》|」|』|。|〉|】|”)/g, '<h-char class="bd bd-beg"><h-inner>$1</h-inner></h-char>').
+        replace(/(（|《|「|『|【|〈|“)/g, '<h-char class="bd bd-end"><h-inner>$1</h-inner></h-char>')
+        ;
     return content;
 }
 
-if (hexo.config.transpunc == true) {
-    hexo.extend.filter.register('before_post_render', function(data){
-        data.title = trans_punc(data.title);
-        data.content = trans_punc(data.content);
-    });
-}
+hexo.extend.filter.register('before_post_render', function(data){
+    data.content = trans_punc(data.content);
+});
