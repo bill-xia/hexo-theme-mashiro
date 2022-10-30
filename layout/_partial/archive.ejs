@@ -1,28 +1,10 @@
-<% var post_list = []; %>
-<% page.posts.each((post) => {post_list.push(post);}); %>
-<% post_list.sort((p1, p2) => { %>
-  <% if (p1.pinned != p2.pinned) { %>
-    <% if (p1.pinned) { %>
-      <% if (p2.pinned) { %>
-        <% return p1.pinned - p2.pinned; %>
-      <% } else { %>
-        <% return -1; %>
-      <% } %>
-    <% } %>
-    <% if (p2.pinned) return 1; %>
-    <% return 0; %>
-  <% } else { %>
-    <% return p2.date - p1.date; %>
-  <% } %>
-<% }) %>
-
 <% if (pagination == 2){ %>
-  <% post_list.forEach(function(post){ %>
+  <% page.posts.each(function(post){ %>
     <%- partial('article', {post: post, index: true}) %>
   <% }) %>
 <% } else { %>
   <% var last; %>
-  <% post_list.forEach(function(post, i){ %>
+  <% page.posts.each(function(post, i){ %>
     <% var year = post.date.year(); %>
     <% if (last != year){ %>
       <% if (last != null){ %>
@@ -37,7 +19,7 @@
     <% } %>
     <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
   <% }) %>
-  <% if (post_list.length){ %>
+  <% if (page.posts.length){ %>
     </div></section>
   <% } %>
 <% } %>
