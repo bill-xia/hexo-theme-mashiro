@@ -27,3 +27,7 @@ A=\begin{matrix}
 \end{matrix}
 $$
 ```
+
+Q: 我在文章内的标题中使用了标点符号（如 `## 你好，世界！`），标点变成了乱码怎么办？
+
+A: 这是一个 bug，已经修复，运行 `npm update markdown-them` 即可。要看到效果还需要 `hexo clean` 清除缓存。
