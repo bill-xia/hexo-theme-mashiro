@@ -14,7 +14,6 @@ cd themes
 git clone git@github.com:bill-xia/hexo-theme-mashiro.git mashiro
 npm uninstall hexo-renderer-marked # 卸载当前的markdown引擎，如果不是marked需换成当前的markdown引擎
 npm install hexo-renderer-markdown-them
-npm install font-spider -g # 全局安装font-spider，用于字体压缩
 ```
 
 现在您的主题文件夹`themes`中已经有了一个名为`mashiro`的文件夹。通常情况下，Hexo有两个配置文件：站点配置文件，即站点根目录下的`_config.yml`，以及主题配置文件，即各个主题目录下的`themes/theme-name/_config.yml`(但本主题没有)。
@@ -39,12 +38,9 @@ Hexo5.0推出的新功能[替换主题配置文件](https://hexo.io/docs/configu
 
 ``` yml
 theme: mashiro
-relative_link: true
 highlight:
   enable: false
 ```
-
-为了压缩中文字体，需要修改`_config.yml`的`relative_link`为`true`，因为`font-spider`是根据相对地址来查找字体文件的。
 
 为了正确地高亮，需要修改`_config.yml`的`highlight enable`为`false`以关闭hexo自带的高亮。
 
@@ -53,11 +49,8 @@ highlight:
 ``` sh
 hexo clean
 hexo g
-font-spider public/*.html public/*/*.html public/*/*/*.html public/*/*/*/*.html
 hexo deploy
 ```
-
-注意`font-spider`那一行，您的public文件夹中最深的html文件嵌套了几层，就应当在后面写几层的通配符（俺只会笨办法...）。您可以将上面这些语句保存为一个脚本文件，部署时运行一下就行了。
 
 ## 特性
 
@@ -200,7 +193,7 @@ math:
 
 `MathJax3`的长公式自动换行机制[还没有实现](http://docs.mathjax.org/en/latest/output/linebreaks.html)，这会导致行内公式过长时的溢出被截断（尤其是移动端会有这种问题）。当这种情况发生时，我的建议是把它写成行间公式以使其溢出时滚动。
 
-`KaTeX`带有自动换行功能。由于引入`KaTeX`要引入`css`，会影响`font-spider`工作，需要在`font-spider`命令中加入选项`--ignore katex.min.css`。另外，本主题已将`KaTeX`的默认字体大小修改为`1em`（默认为`1.21em`，与主题风格不符合）。
+本主题已将`KaTeX`的默认字体大小修改为`1em`（默认为`1.21em`，与主题风格不符合）。
 
 ### 自动标题序号
 
