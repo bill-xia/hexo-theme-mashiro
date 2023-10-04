@@ -54,11 +54,23 @@ $logo-text
   width: 100%
   max-width: 100%
   margin: 0 auto
-  background: rgba(255,255,255,0.732)
-  -webkit-backdrop-filter: saturate(180%) blur(20px)
-  backdrop-filter: saturate(180%) blur(20px)
+  background: rgb(255,255,255,1)
   z-index: 2
   border-bottom: 1px solid #ddd
+
+@supports (backdrop-filter: saturate(180%) blur(20px)){
+  #nav-outer {
+    background: rgba(255,255,255,0.732)
+    backdrop-filter: saturate(180%) blur(20px)
+  }
+}
+
+@supports (-webkit-backdrop-filter: saturate(180%) blur(20px)) {
+  #nav-outer {
+    background: rgba(255,255,255,0.732)
+    -webkit-backdrop-filter: saturate(180%) blur(20px)
+  }
+}
 
 #main-nav {
   display: flex

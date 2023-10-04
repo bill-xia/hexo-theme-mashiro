@@ -46,14 +46,14 @@ if (hexo-config("title-number") == "config")
 .article-entry
   if hexo-config("title-number") == "all"
     @extend $title-number
-  @media screen
-    text-align: justify
-  @media screen and (max-width: 600px)
-    text-align: start
+  // @media screen
+  text-align: justify
+  // @media screen and (max-width: 600px)
+  //   text-align: justify
   @extend $base-style
   clearfix()
-  .markdown-them-math-inline
-    margin: 0.25em
+  .markdown-them-math-inline:before, .markdown-them-math-inline:after
+    content: " "
   color: color-default
   p, table
     line-height: line-height
@@ -95,6 +95,8 @@ if (hexo-config("title-number") == "config")
   th, td
     text-align: center
   blockquote
+    strong
+      font-style: normal
     font-family: font-serif
     if (blockquote == "italic")
       font-style: italic

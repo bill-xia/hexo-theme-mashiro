@@ -283,14 +283,7 @@ sitemap: false
 
 繁中同理，可以先找找汉仪书宋系列有没有做繁体字，如果没有，可以挑一个您喜欢的繁体中文字体，放到`themes/mashiro/source/fonts`目录下，再在`themes/mashiro/source/css/style.styl`中将`@font-face { font-family: Chinese; }`的字体都更换成您的字体即可。如果简繁混排，可以在`style.styl`中添加新的`@font-face { font-family: Traditional-Chinese; }`并指向您的字体，并在`_variables.styl`的`font-sans`和`font-serif`变量中加入新字体，顺序视您的需要而定，哪种字体用得多就放在前面。
 
-### 一些可能的问题
+### TroubleShooting
 
-如果您不怕麻烦，可以更新到最新版本的主题，您应当可以获得文档中提及的所有feature。
+See [TroubleShooting](./troubleshooting.md).
 
-Q: 为什么有些代码块不能加载`Copy`按钮？
-
-A: 如果您的代码块在markdown中是用`{% codeblock %} {% endcodeblock %}`包裹起来的，那么很遗憾，本主题暂不支持这种写法，请换用markdown的`` ``` ``语法。如果确实是使用`` ``` ``包裹的，请您运行`npm update`升级所有npm包至最新版试试，有可能这个问题已经被我修复了。如果还是不行，请提交issue。
-
-Q: 为什么我的文章不能显示？
-
-A: 请为您的文章加入`front-matter`。如果还是不行，请提交issue。
