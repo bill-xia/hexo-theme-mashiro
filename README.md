@@ -40,9 +40,12 @@ Hexo5.0推出的新功能[替换主题配置文件](https://hexo.io/docs/configu
 theme: mashiro
 highlight:
   enable: false
+
+# Also add this line for Hexo 7.0.0+:
+syntax_highlighter: # empty
 ```
 
-为了正确地高亮，需要修改`_config.yml`的`highlight enable`为`false`以关闭hexo自带的高亮。
+为了正确地高亮，需要修改`_config.yml`的`highlight enable`为`false`以关闭hexo自带的高亮。对 Hexo 7.0.0+ 以上的版本，还需要添加一行: `syntax_highlighter: #empty`，详见 [Hexo 文档](https://hexo.io/docs/syntax-highlight#Disabled)。
 
 ### 部署站点
 
