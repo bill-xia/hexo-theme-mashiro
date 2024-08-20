@@ -34,3 +34,8 @@
 
   </section>
 <% } %>
+<% if (!index && post.comments && theme.isso.enable) { %>
+  <section id="isso-thread">
+    <noscript>Javascript needs to be activated to view comments.</noscript>
+  </section>
+<% } %>

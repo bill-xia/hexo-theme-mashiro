@@ -1,6 +1,3 @@
-.article
-  margin: block-margin 0
-
 .article-inner
   @extend $block
   overflow: hidden
@@ -44,6 +41,7 @@ if (hexo-config("title-number") == "config")
     @extend $title-number
 
 .article-entry
+#isso-thread
   if hexo-config("title-number") == "all"
     @extend $title-number
   // @media screen
@@ -172,6 +170,7 @@ if (hexo-config("title-number") == "config")
     cursor: pointer
   pre
     padding: 20px 0
+    font-family: font-mono
 
 .article-more-link a
   display: inline-block

@@ -36,9 +36,6 @@
       <%- partial('post/tag') %>
     </footer>
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
 </article>
 
 <% if (!index && post.comments && config.disqus_shortname){ %>
@@ -52,4 +49,13 @@
   <section id="comments" class="vcomment">
 
   </section>
+<% } %>
+<% if (!index && post.comments && theme.isso.enable) { %>
+  <section id="isso-thread">
+    <noscript>Javascript needs to be activated to view comments.</noscript>
+  </section>
+<% } %>
+
+<% if (!index){ %>
+  <%- partial('post/nav') %>
 <% } %>

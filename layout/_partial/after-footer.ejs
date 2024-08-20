@@ -45,6 +45,18 @@
 </script>
 <% } %>
 
+<% if (theme.isso && theme.isso.enable) { %>
+  <script 
+  <% if (theme.isso.data_isso) { %> 
+    data-isso="<%= theme.isso.data_isso %>"
+  <% } %>
+  <% if (theme.isso.src) { %> 
+    src="<%= theme.isso.src %>"
+  <% } %>
+  >
+  </script>
+<% } %>
+
 <% if(theme.math.enable && theme.math.engine == 'mathjax'){ %>
 <script>
   MathJax = {
