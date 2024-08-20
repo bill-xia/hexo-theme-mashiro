@@ -38,6 +38,10 @@
   </div>
 </article>
 
+<% if (!index){ %>
+  <%- partial('post/nav') %>
+<% } %>
+
 <% if (!index && post.comments && config.disqus_shortname){ %>
 <section id="comments">
   <div id="disqus_thread">
@@ -54,8 +58,4 @@
   <section id="isso-thread">
     <noscript>Javascript needs to be activated to view comments.</noscript>
   </section>
-<% } %>
-
-<% if (!index){ %>
-  <%- partial('post/nav') %>
 <% } %>
