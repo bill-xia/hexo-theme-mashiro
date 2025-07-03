@@ -13,13 +13,14 @@
 </script>
 <% } %>
 
-<script src="<%- url_for('js/clipboard.min.js') %>"></script>
-<script src="<%- url_for('js/jquery-1.4.3.min.js') %>"></script>
+<!-- 使用 js() 辅助函数替代 script 标签 -->
+<%- js('js/clipboard.min') %>
+<%- js('js/jquery-1.4.3.min') %>
 <% if (theme.fancybox){ %>
-<script src="<%- url_for('fancybox/jquery.fancybox-1.3.4.pack.js') %>"></script>
+  <%- js('fancybox/jquery.fancybox-1.3.4.pack') %>
 <% } %>
 
-<script src="<%- url_for('js/script.js') %>"></script>
+<%- js('js/script') %>
 <%- partial('gauges-analytics') %>
 
 <% if(theme.valine.enable && theme.valine.appId && theme.valine.appKey){ %>
@@ -57,18 +58,8 @@
     }
   };
 </script>
-<!-- <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-    CommonHTML: {
-      linebreaks: false
-    }
-  });
-  </script> -->
+<!-- 修复 MathJax 路径 -->
 <script type="text/javascript" id="MathJax-script" async
-  src="<%- url_for('mathjax/tex-chtml.js') %>">
+  src="<%- url_for('/mathjax/tex-chtml.js') %>">
 </script>
-<!-- <script type="text/javascript"
-   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML">
-</script> -->
 <% } %>
