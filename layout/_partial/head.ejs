@@ -19,10 +19,10 @@
   }
   %>
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <link rel="stylesheet" href="/css/fonts/Chinese-normal-normal.min.css">
-  <link rel="stylesheet" href="/css/fonts/ChineseMono-normal-normal.min.css">
-  <link rel="stylesheet" href="/css/fonts/Chinese-italic-normal.min.css">
-  <link rel="stylesheet" href="/css/fonts/Chinese-normal-bold.min.css">
+  <%- css('/css/fonts/Chinese-normal-normal.min') %>
+  <%- css('/css/fonts/ChineseMono-normal-normal.min') %>
+  <%- css('/css/fonts/Chinese-italic-normal.min') %>
+  <%- css('/css/fonts/Chinese-normal-bold.min') %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <% if (page.description){ %>
   <meta name="description" itemprop="description" content="<%= page.description %>">
@@ -41,18 +41,18 @@
   <% if (theme.favicon){ %>
     <%- favicon_tag(theme.favicon) %>
   <% } %>
-  <link rel="stylesheet" href="/css/style.css">
+  <%- css('css/style') %>
   <% if (theme.fancybox){ %>
-    <link rel="stylesheet" href="/fancybox/jquery.fancybox-1.3.4.css">
+    <%- css('fancybox/jquery.fancybox-1.3.4') %>
   <% } %>
   <% if(theme.math.enable && theme.math.engine == 'katex'){ %>
-    <link rel="stylesheet" href="/katex/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%- url_for('/katex/katex.min.css') %>" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
 
     <!-- The loading of KaTeX is deferred to speed up page rendering -->
-    <script defer src="/katex/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+    <script defer src="<%- url_for('/katex/katex.min.js') %>" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
 
     <!-- To automatically render math in text elements, include the auto-render extension: -->
-    <script defer src="/katex/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    <script defer src="<%- url_for('/katex/contrib/auto-render.min.js') %>" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
         onload="renderMathInElement(document.body);"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
