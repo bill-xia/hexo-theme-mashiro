@@ -13,7 +13,6 @@
 </script>
 <% } %>
 
-<!-- 使用 js() 辅助函数替代 script 标签 -->
 <%- js('js/clipboard.min') %>
 <%- js('js/jquery-1.4.3.min') %>
 <% if (theme.fancybox){ %>
@@ -58,7 +57,7 @@
     }
   };
 </script>
-<!-- 修复 MathJax 路径 -->
+
 <script type="text/javascript" id="MathJax-script" async
   src="<%- url_for('/mathjax/tex-chtml.js') %>">
 </script>

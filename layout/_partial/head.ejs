@@ -19,7 +19,6 @@
   }
   %>
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <!-- 修复字体文件路径 -->
   <%- css('/css/fonts/Chinese-normal-normal.min') %>
   <%- css('/css/fonts/ChineseMono-normal-normal.min') %>
   <%- css('/css/fonts/Chinese-italic-normal.min') %>
@@ -42,14 +41,11 @@
   <% if (theme.favicon){ %>
     <%- favicon_tag(theme.favicon) %>
   <% } %>
-  <!-- 修复主样式表路径 -->
   <%- css('css/style') %>
   <% if (theme.fancybox){ %>
-    <!-- 修复 fancybox 路径 -->
     <%- css('fancybox/jquery.fancybox-1.3.4') %>
   <% } %>
   <% if(theme.math.enable && theme.math.engine == 'katex'){ %>
-    <!-- 修复 KaTeX 路径 -->
     <link rel="stylesheet" href="<%- url_for('/katex/katex.min.css') %>" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
 
     <!-- The loading of KaTeX is deferred to speed up page rendering -->
