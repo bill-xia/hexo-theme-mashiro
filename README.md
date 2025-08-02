@@ -8,29 +8,21 @@
 
 ### 安装
 
+以下操作都在站点根目录下进行。
+
 ``` sh
-# 在站点根目录下操作
+# 下载主题
 cd themes
 git clone git@github.com:bill-xia/hexo-theme-mashiro.git mashiro
-npm uninstall hexo-renderer-marked # 卸载当前的markdown引擎，如果不是marked需换成当前的markdown引擎
-npm install hexo-renderer-markdown-them
+# 卸载当前的markdown引擎并更换成 markdown-it
+npm uninstall hexo-renderer-marked # 如果不是marked需换成当前的markdown引擎
+npm install hexo-renderer-markdown-it
+# 安装 markdown-it 插件
+# katex 插件，用于渲染数学公式
+npm install @renbaoshuo/markdown-it-katex
+# highlightjs 插件，用于代码块高亮
+npm install markdown-it-highlightjs
 ```
-
-现在您的主题文件夹`themes`中已经有了一个名为`mashiro`的文件夹。通常情况下，Hexo有两个配置文件：站点配置文件，即站点根目录下的`_config.yml`，以及主题配置文件，即各个主题目录下的`themes/theme-name/_config.yml`(但本主题没有)。
-
-Hexo5.0推出的新功能[替换主题配置文件](https://hexo.io/docs/configuration#Alternate-Theme-Config)允许您在站点根目录建立一个主题配置文件`_config.theme-name.yml`，Hexo会将该文件与主题根目录下的`themes/theme-name/_config.yml`中的配置进行**合并**。为了方便您更新主题，建议您使用这一功能，这样更新主题时只需删除`themes/mashiro`文件夹并重新安装即可。为了防止配置合并带来的麻烦，本主题目录下没有`_config.yml`，取而代之的是`_config.sample.yml`，这样您的配置文件只有站点根目录下的`_config.mashiro.yml`一个。
-
-现在来配置这一功能。在站点根目录中新建文件`_config.mashiro.yml`，并将`themes/mashiro/_config.sample.yml`中的内容粘贴进去。
-
-如果您不想使用这一功能，或者您的`hexo`版本低于5.0且您不希望升级，那么请将`themes/mashiro/_config.sample.yml`重命名为`themes/mashiro/_config.yml`。
-
-理想情况是，在完成上述操作后，您不再需要接触`themes/mashiro`目录中的任何文件。
-
-### 更新
-
-更新主题时，直接删除（或备份）`themes/mashiro`文件夹，再重复安装步骤即可。如果您安装时按照文档将主题配置文件移到了站点根目录下，那么您的配置不会丢失。
-
-更新时本项目将尽量兼容旧的配置文件，如果旧的配置文件失效了，还要麻烦您重新配置一次。一般情况下您不需要编辑配置文件，除非您想要应用一些新功能。
 
 ### 站点配置
 
@@ -41,11 +33,47 @@ theme: mashiro
 highlight:
   enable: false
 
+markdown:
+  plugins:
+    - '@renbaoshuo/markdown-it-katex'
+    - 'markdown-it-highlightjs'
+    # feel free to add more plugins here :-)
+
 # Also add this line for Hexo 7.0.0+:
 syntax_highlighter: # empty
 ```
 
-为了正确地高亮，需要修改`_config.yml`的`highlight enable`为`false`以关闭hexo自带的高亮。对 Hexo 7.0.0+ 以上的版本，还需要添加一行: `syntax_highlighter: #empty`，详见 [Hexo 文档](https://hexo.io/docs/syntax-highlight#Disabled)。
+> 为了正确地高亮，需要修改`_config.yml`的`highlight enable`为`false`以关闭hexo自带的高亮。
+> 对 Hexo 7.0.0+ 以上的版本，还需要添加一行: `syntax_highlighter: #empty`，详见 [Hexo 文档](https://hexo.io/docs/syntax-highlight#Disabled)。
+
+### 主题配置
+
+这里只是给出创建默认主题配置的步骤，每个特性具体如何配置见[特性](#特性)一节。
+
+#### After Hexo 5.0
+
+``` sh
+cp themes/mashiro/_config.sample.yml _config.mashiro.yml
+```
+
+> 这依赖 Hexo 5.0 引入的功能[替换主题配置文件](https://hexo.io/docs/configuration#Alternate-Theme-Config)。
+> 理想情况是，在完成上述操作后，您不再需要接触`themes/mashiro`目录中的任何文件。
+
+#### Before Hexo 5.0
+
+``` sh
+mv themes/mashiro/_config.sample.yml themes/mashiro/_config.yml
+```
+
+### 更新
+
+先备份主题配置文件：
+
+`_config.mashiro.yml`(After Hexo 5.0)/`theme/mashiro/_config.yml`(Before Hexo 5.0)
+
+然后在 `theme/mashiro` 目录下 `git pull` 即可。
+
+> `git pull` 不成功的话（例如 `git clone` 时加了 `--depth=1`），重新安装主题也可以。在 `theme` 目录下 `git clone git@github.com:bill-xia/hexo-theme-mashiro.git mashiro` 即可。
 
 ### 部署站点
 
@@ -57,19 +85,17 @@ hexo deploy
 
 ## 特性
 
-### Warning
-
-注意：这个主题每次更新后都要求此后访问的用户等待共计800K左右的字体加载，对于一个低带宽的低配服务器而言，这需要一段时间（约1s-5s），这段时间内用户看到的内容各不相同，可能空白，可能是默认无衬线字体字体，也可能是默认衬线字体。如果您不能接受这一点，可能这个主题不适合您。
-
 ### 概述
 
-主题支持中文字体压缩，LaTeX数学公式渲染，以及hexo默认主题支持的其他功能（除了sidebar之外，目前我没能把它和我的主题融合起来）。暂时不支持文章目录功能。主题采用了CTeX默认使用的字体，英文为Latin Modern系列，中文正文为汉仪书宋，粗体为方正黑体。（斜体应为楷体，代码区应为仿宋体，我还没有做。）CTeX制作的Fandols系列字体可以显示但无法压缩，我目前无法解决，所以没有用这个系列。
+主题支持中文字体压缩，代码高亮，TeX 数学公式渲染，Vega-Lite 渲染数据图表等功能。
 
-### Markdown渲染
+主题采用了CTeX默认使用的字体，英文为Latin Modern系列，中文正文为汉仪书宋，粗体为方正黑体，斜体为楷体，代码字体为仿宋。
 
-代码高亮：采用Hexo的默认高亮引擎，带有行号，通过主题内的css和浏览器端js实现滚动时行号锁定。
+#### Markdown渲染
 
-Markdown引擎：通过我为`markdown-it`内嵌一些插件得到的[`markdown-them`引擎](https://github.com/bill-xia/markdown-them)渲染，支持渲染数学公式、Todo-list等。
+Markdown引擎：使用 `markdown-it`。`markdown-it` 只实现了基本的 CommonMark 功能，但它强大的插件机制可以拓展各种实用的 Markdown 特性，例如 Katex 渲染数学公式，Vega-embed 渲染数据图表等。
+
+代码高亮：采用 `markdown-it-highlightjs` 插件。这一插件不支持代码行号，本主题也暂不支持。
 
 ### 功能及配置
 
@@ -186,17 +212,64 @@ transpunc: true
 
 ### 数学公式
 
-``` yml
-math:
-  enable: true
-  engine: mathjax
+用于在 Markdown 中用于渲染 TeX 数学公式。如果你不知道这是什么，有许多优秀的教程，例如 [overleaf的教程](https://www.overleaf.com/learn/latex/Mathematical_expressions)。
+
+#### 使用
+
+在 markdown 文本中，用一对 `$` 或 `$$` 包裹 TeX 数学公式即可，分别代表行内公式和行间公式。
+
+`$E=mc^2$`: $E=mc^2$
+
+```
+$$
+E=mc^2
+$$
 ```
 
-默认情况下“渲染数学公式”只是保证里面的内容不被markdown引擎渲染，把他们包围在`$ $`或`\( \)`之间输出到html。进一步的渲染交给浏览器端脚本完成，您可以选择使用`KaTeX`或`MathJax`，只需将`engine`项设为您需要的引擎(字符串`mathjax`或`katex`)。本主题默认使用`MathJax`。主题的样式文件对行间公式设置了溢出时滚动。
+$$
+E=mc^2
+$$
 
-`MathJax3`的长公式自动换行机制[还没有实现](http://docs.mathjax.org/en/latest/output/linebreaks.html)，这会导致行内公式过长时的溢出被截断（尤其是移动端会有这种问题）。当这种情况发生时，我的建议是把它写成行间公式以使其溢出时滚动。
+#### 配置
 
-本主题已将`KaTeX`的默认字体大小修改为`1em`（默认为`1.21em`，与主题风格不符合）。
+如果按照[使用](#使用)一节的操作进行，数学公式已经被启用了。具体需要：
+
+1. 安装 markdown-it-katex 插件
+``` sh
+npm install @renbaoshuo/markdown-it-katex
+```
+2. 在 **站点** 配置文件(_config.yml) 中启用插件：
+```yml
+markdown:
+  plugins:
+    - '@renbaoshuo/markdown-it-katex'
+    ...
+```
+
+### 数据图表
+
+[Vega-Lite](https://vega.github.io/vega-lite/) 是一个强大的数据图声明语法，描述如何将原始数据（例如 `csv` 表格中的数据）转换为数据图，支持对数据的复杂处理和图表的样式定制。相比自己写 `matplotlib` 脚本**命令式**地描述画图过程，用 Vega-Lite **声明式**地描述想画什么更加简洁优雅。
+
+[VisDown](https://visdown.com/) 则赋予了 Markdown 使用 Vega-Lite 画数据图的能力。本主题仿照 visdown 的实现，允许我们在 hexo 静态网站中绘制数据图。
+
+#### 使用
+
+> 使用这一功能会将作图所用的源数据一并部署到网站上，如果源数据表非常大或者不希望公开请谨慎使用。
+
+参考 [VisDown](https://visdown.com/)，在 Markdown 中编写 vega-lite 代码即可。
+
+其中 `data` 的 `url` 推荐如下配置：
+
+```
+data:
+  url: /data/sample.csv
+```
+
+然后在网站目录中创建 `source/data/sample.csv` 即可。
+
+#### 配置
+
+本特性无需配置，默认开启。
 
 ### 自动标题序号
 
