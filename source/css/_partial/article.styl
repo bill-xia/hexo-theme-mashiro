@@ -154,13 +154,11 @@ if (hexo-config("title-number") == "config")
     word-break: break-all
   .katex, .mjx-chtml, .MathJax
     font-size: 1em !important
-  .highlight
+  pre
     position: relative
     &:hover .copy-button
       opacity: 1
   .copy-button
-    @media (any-hover: hover)
-      opacity: 0
     position: absolute
     right: 15px
     top: 15px
@@ -172,6 +170,9 @@ if (hexo-config("title-number") == "config")
     cursor: pointer
   pre
     padding: 20px 0
+  .vega-embed
+    overflow: auto
+    @extend $variable-width
 
 .article-more-link a
   display: inline-block

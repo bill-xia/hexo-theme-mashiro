@@ -51,7 +51,16 @@
   };
 
   // code block copy button
-  var codes = document.getElementsByClassName('code');
+  var pre_list = document.getElementsByTagName('pre');
+  var codes = []
+  for (var i = 0; i < pre_list.length; ++i) {
+    var pre = pre_list[i];
+    var code_list = pre.getElementsByTagName('code');
+    for (var j = 0; j < code_list.length; ++j) {
+      codes.push(code_list[j]);
+    }
+  }
+  console.log(codes);
   for (var i = 0; i < codes.length; ++i) {
     var copy_button = document.createElement('div');
     copy_button.className = "copy-button";
@@ -68,6 +77,7 @@
         btn.innerHTML = "Copy";
       }, 1000);
     }
+    codes[i].parentElement.style.position = "relative";
     codes[i].parentElement.insertBefore(copy_button, codes[i]);
   }
 
